@@ -9,8 +9,6 @@
 
 
 
-<pre>
-    <code>
+<pre class="pre">
         {JSON.stringify(data,null,2)}
-    </code>
 </pre>
