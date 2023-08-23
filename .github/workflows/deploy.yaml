@@ -19,7 +19,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd apps/website
           pnpm install
       - name: build
         env:
