@@ -25,7 +25,6 @@ jobs:
           BASE_PATH: '/picosvelte'
 
         run: |
-          cd apps/website
           pnpm run build
           touch build/.nojekyll
 
