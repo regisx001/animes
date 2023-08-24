@@ -10,4 +10,3 @@ export { default as NavigationBar } from "./Components/Navigation/NavigationBar.
 export { gogo } from "./providers"
 
 // Stores
-export { urlStore } from "./stores"

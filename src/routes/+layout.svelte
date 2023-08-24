@@ -4,15 +4,6 @@
 	import '../app.postcss';
 
 	import { onMount, beforeUpdate } from 'svelte';
-	import { urlStore } from '$lib';
-
-	onMount(async () => {
-		$urlStore = window.location;
-	});
-
-	beforeUpdate(async () => {
-		$urlStore = window.location;
-	});
 </script>
 
 <slot />
