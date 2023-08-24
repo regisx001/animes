@@ -3,10 +3,14 @@
 	import '@skeletonlabs/skeleton/styles/skeleton.css';
 	import '../app.postcss';
 
-	import { onMount } from 'svelte';
+	import { onMount, beforeUpdate } from 'svelte';
 	import { urlStore } from '$lib';
 
 	onMount(async () => {
+		$urlStore = window.location;
+	});
+
+	beforeUpdate(async () => {
 		$urlStore = window.location;
 	});
 </script>
