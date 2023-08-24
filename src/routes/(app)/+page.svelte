@@ -1,7 +1,6 @@
 <script lang="ts">
-	import Home from './../../lib/Components/Pages/Home.svelte';
 	import { page } from '$app/stores';
-	import { gogo } from '$lib';
+	import { gogo, RecentAnimePage } from '$lib';
 	import { onMount } from 'svelte';
 
 	async function fetchAnimes(page: number = 1) {
@@ -41,7 +40,7 @@
 </form>
 
 {#if is_ready}
-	<Home {data} />
+	<RecentAnimePage {data} />
 {/if}
 
 <!-- <pre class="pre">

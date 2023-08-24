@@ -3,19 +3,19 @@
 	import { gogo } from '$lib';
 	import { onMount } from 'svelte';
 
-	let anime: string | null;
+	let episode: string | null;
 	$: data = {};
 
 	onMount(async () => {
 		page.subscribe(({ url }) => {
-			anime = url.searchParams.get('id');
+			episode = url.searchParams.get('id');
 		});
 
 		// @ts-ignore
-		data = await gogo.fetchAnimeInfo(anime);
+		// data = await gogo.fetchAnimeInfo(anime);
 	});
 </script>
 
 <pre class="pre">
-	{JSON.stringify(data, null, 2)}
+	{JSON.stringify(episode, null, 2)}
 </pre>
