@@ -16,6 +16,7 @@ export { gogo } from "./providers"
 // Widgets
 export { default as GithubIcon } from "./Widgets/GithubIcon.svelte"
 export { default as RecentAnimeCard } from "./Widgets/RecentAnimeCard.svelte"
+export { default as Carousel } from "./Widgets/Carousel.svelte"
 
 
 

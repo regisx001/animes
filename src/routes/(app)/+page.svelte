@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { gogo, RecentAnimePage } from '$lib';
+	import { gogo, RecentAnimePage, Carousel } from '$lib';
 	import { onMount } from 'svelte';
 
 	async function fetchAnimes(page: number = 1) {
@@ -32,17 +32,12 @@
 	}
 </script>
 
-{curr_page}
-
-<form action="." method="get">
+<!-- <form action="." method="get">
 	<input hidden name="page" value={curr_page + 1} type="text" />
 	<button class="btn">Next</button>
-</form>
+</form> -->
 
 {#if is_ready}
+	<Carousel {data} />
 	<RecentAnimePage {data} />
 {/if}
-
-<!-- <pre class="pre">
-	{JSON.stringify(data, null, 2)}
-</pre> -->
