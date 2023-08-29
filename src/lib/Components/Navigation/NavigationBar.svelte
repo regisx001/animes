@@ -1,4 +1,5 @@
 <script>
+	import SearchForm from './../../Widgets/SearchForm.svelte';
 	import { AppBar, LightSwitch } from '@skeletonlabs/skeleton';
 	import { GithubIcon } from '$lib';
 	import Logo from './Logo.svelte';
@@ -15,7 +16,9 @@
 			</div>
 		</a>
 	</svelte:fragment>
-	<div />
+	<div class="flex flex-row justify-center items-center">
+		<SearchForm />
+	</div>
 	<svelte:fragment slot="trail">
 		<div class="flex flex-row gap-4 items-center">
 			<LightSwitch />
