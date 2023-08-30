@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { AppShell } from '@skeletonlabs/skeleton';
-	import { NavigationBar } from '$lib';
+	import { NavigationBar, LatestEpisodesSideBar } from '$lib';
 </script>
 
 <AppShell>
@@ -9,6 +9,9 @@
 	</svelte:fragment>
 	<!-- (sidebarLeft) -->
 	<!-- (sidebarRight) -->
+	<!-- <svelte:fragment slot="sidebarRight">
+		<LatestEpisodesSideBar />
+	</svelte:fragment> -->
 	<!-- (pageHeader) -->
 	<!-- Router Slot -->
 	<slot />

@@ -38,6 +38,6 @@
 </form> -->
 
 {#if is_ready}
-	<Carousel {data} />
+	<Carousel />
 	<RecentAnimePage {data} />
 {/if}

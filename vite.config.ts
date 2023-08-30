@@ -18,4 +18,7 @@ export default defineConfig({
 			// '@styles': path.resolve(__dirname, './src/lib/styles'),
 		},
 	},
+	optimizeDeps: {
+		include: ['lodash.get', 'lodash.isequal', 'lodash.clonedeep']
+	}
 });

@@ -15,10 +15,6 @@
 		}
 	});
 
-	beforeUpdate(async () => {
-		searchKeyWords = $page.url.searchParams.get('keywords') || '';
-	});
-
 	$: {
 		new Promise(async (resolve, reject) => {
 			const animes = await gogo.search(searchKeyWords);
