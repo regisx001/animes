@@ -27,12 +27,24 @@
 			data = val;
 		});
 	}
+
+	$: open = true;
+	function onkeydown(e: any) {
+		if (e.key == 'Escape' && open) {
+			open = false;
+		}
+	}
 </script>
 
+<svelte:window on:keydown={onkeydown} />
+
+<!-- {#if $searchStore !== null && open === true} -->
 {#if $searchStore !== null}
-	<div class="absolute top-full m-4 z-50 max-h-96 overflow-y-scroll lg:w-[55%] xl:w-[65%] bg-black">
-		<pre>
-			{JSON.stringify(data, null, 2)}
-		</pre>
-	</div>
+	<section class="absolute top-full overflow-y-scroll z-50 max-h-96 lg:w-[55%] xl:w-[65%]">
+		<div class="  bg-black">
+			<pre>
+				{JSON.stringify(data, null, 2)}
+			</pre>
+		</div>
+	</section>
 {/if}

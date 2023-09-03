@@ -38,10 +38,12 @@
 		<input
 			bind:value={keywords}
 			on:input={() => {
-				if (keywords === '') {
-					$searchStore = null;
+				if (keywords !== '') {
+					setTimeout(() => {
+						$searchStore = keywords;
+					}, 500);
 				} else {
-					$searchStore = keywords;
+					$searchStore = null;
 				}
 			}}
 			name="keywords"
