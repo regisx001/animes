@@ -17,8 +17,5 @@ export default defineConfig({
 			// '@stores': path.resolve(__dirname, './src/lib/stores'),
 			// '@styles': path.resolve(__dirname, './src/lib/styles'),
 		},
-	},
-	optimizeDeps: {
-		include: ['lodash.get', 'lodash.isequal', 'lodash.clonedeep']
 	}
 });

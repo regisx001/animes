@@ -32,11 +32,6 @@
 	}
 </script>
 
-<!-- <form action="." method="get">
-	<input hidden name="page" value={curr_page + 1} type="text" />
-	<button class="btn">Next</button>
-</form> -->
-
 {#if is_ready}
 	<Carousel />
 	<RecentAnimePage {data} />

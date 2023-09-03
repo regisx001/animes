@@ -3,6 +3,7 @@
 	import { AppBar, LightSwitch } from '@skeletonlabs/skeleton';
 	import { GithubIcon } from '$lib';
 	import Logo from './Logo.svelte';
+	import RealtimeSearch from '$lib/Widgets/RealtimeSearch.svelte';
 </script>
 
 <AppBar>
@@ -16,8 +17,9 @@
 			</div>
 		</a>
 	</svelte:fragment>
-	<div class="flex flex-row justify-center items-center">
+	<div class="relative flex flex-col justify-center items-center">
 		<SearchForm />
+		<RealtimeSearch />
 	</div>
 	<svelte:fragment slot="trail">
 		<div class="flex flex-row gap-4 items-center">

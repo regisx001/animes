@@ -13,11 +13,11 @@
 		{anime.title.slice(0, 40)}
 	</section>
 
-	<div class="variant-filled-surface rounded absolute -top-0 font-bold -right-0 z-10">
+	<!-- <div class="variant-filled-surface rounded absolute -top-0 font-bold -right-0 z-10">
 		<span class="chip variant-soft hover:variant-filled">
 			<span>Episode {anime.episodeNumber}</span>
 		</span>
-	</div>
+	</div> -->
 </article>
 
 <style>

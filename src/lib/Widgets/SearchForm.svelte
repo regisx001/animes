@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { searchStore } from '$lib/stores';
+
 	let keywords: string;
 	function validatingSearch() {
 		// Todo Later
@@ -33,7 +35,19 @@
 				<path d="M21 21l-6 -6" />
 			</svg>
 		</div>
-		<input bind:value={keywords} name="keywords" type="search" placeholder="Search..." />
+		<input
+			bind:value={keywords}
+			on:input={() => {
+				if (keywords === '') {
+					$searchStore = null;
+				} else {
+					$searchStore = keywords;
+				}
+			}}
+			name="keywords"
+			type="search"
+			placeholder="Search..."
+		/>
 		<button class="variant-filled-secondary">Submit</button>
 	</div>
 </form>

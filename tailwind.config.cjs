@@ -22,7 +22,7 @@ export default {
 		forms, typography,
 		skeleton({
 			themes: {
-				preset: ["skeleton", "modern", "crimson"]
+				preset: ["skeleton", "modern", "crimson","wintry"]
 			}
 		}),
 	]
