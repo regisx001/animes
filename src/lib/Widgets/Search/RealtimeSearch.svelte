@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { gogo } from '$lib/providers';
+	import { gogo, SearchAnimeCard } from '$lib';
 	import { searchStore } from '$lib/stores';
 	import { beforeUpdate, onMount } from 'svelte';
 
@@ -13,25 +13,27 @@
 			searchKeyWords = keywords;
 		});
 
-		if (searchKeyWords !== '' && searchKeyWords !== null) {
-			data = await gogo.search(searchKeyWords);
-		}
+		// if (searchKeyWords !== '' && searchKeyWords !== null) {
+		// isReady = false;
+		// data = await gogo.search(searchKeyWords);
+		// isReady = true;
+		// }
 	});
 
 	$: {
 		new Promise(async (resolve, reject) => {
+			isReady = false;
 			const animes = await gogo.search(searchKeyWords);
 			resolve(animes);
 		}).then((val) => {
 			// @ts-ignore
 			data = val;
+			isReady = true;
 		});
 	}
 </script>
 
-<section
-	class="mt-10 mb-auto overflow-y-scroll max-h-[600px] hide-scrollbar z-50 lg:w-[55%] xl:w-[65%]"
->
+<section class="mt-10 mb-auto max-h-[600px] hide-scrollbar z-50 lg:w-[55%] xl:w-[65%]">
 	<div class="card">
 		<input
 			placeholder="Search ...."
@@ -48,8 +50,8 @@
 			class="input"
 			type="text"
 		/>
-		<pre>
-				{JSON.stringify(data, null, 2)}
-		</pre>
+		{#if isReady}
+			<SearchAnimeCard {data} />
+		{/if}
 	</div>
 </section>

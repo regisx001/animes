@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { Modal } from '@skeletonlabs/skeleton';
 	import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
-	import RealtimeSearch from '$lib/Widgets/RealtimeSearch.svelte';
+	import { RealtimeSearch } from '$lib';
+	import { searchStore } from '$lib/stores';
 
 	// import ModalComponentOne from '...';
 	// import ModalComponentTwo from '...';
@@ -14,4 +15,9 @@
 	};
 </script>
 
-<Modal components={modalComponentRegistry} />
+<Modal
+	on:backdrop={() => {
+		$searchStore = null;
+	}}
+	components={modalComponentRegistry}
+/>

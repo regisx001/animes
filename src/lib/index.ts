@@ -19,7 +19,9 @@ export { default as GithubIcon } from "./Widgets/GithubIcon.svelte"
 export { default as RecentAnimeCard } from "./Widgets/RecentAnimeCard.svelte"
 export { default as Carousel } from "./Widgets/Carousel.svelte"
 export { default as LatestEpisodesSideBar } from "./Widgets/LatestEpisodesSideBar.svelte"
-export { default as SearchTrigger } from "./Widgets/SearchForm.svelte"
+export { default as RealtimeSearch } from "./Widgets/Search/RealtimeSearch.svelte"
+export { default as SearchAnimeCard } from "./Widgets/Search/SearchAnimeCard.svelte"
+export { default as SearchTrigger } from "./Widgets/Search/SearchTrigger.svelte"
 
 
 
