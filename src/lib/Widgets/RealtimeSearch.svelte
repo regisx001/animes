@@ -27,24 +27,29 @@
 			data = val;
 		});
 	}
-
-	$: open = true;
-	function onkeydown(e: any) {
-		if (e.key == 'Escape' && open) {
-			open = false;
-		}
-	}
 </script>
 
-<svelte:window on:keydown={onkeydown} />
-
-<!-- {#if $searchStore !== null && open === true} -->
-{#if $searchStore !== null}
-	<section class="absolute top-full overflow-y-scroll z-50 max-h-96 lg:w-[55%] xl:w-[65%]">
-		<div class="  bg-black">
-			<pre>
+<section
+	class="mt-10 mb-auto overflow-y-scroll max-h-[600px] hide-scrollbar z-50 lg:w-[55%] xl:w-[65%]"
+>
+	<div class="card">
+		<input
+			placeholder="Search ...."
+			bind:value={searchKeyWords}
+			on:input={() => {
+				if (searchKeyWords !== '') {
+					setTimeout(() => {
+						$searchStore = searchKeyWords;
+					}, 500);
+				} else {
+					$searchStore = null;
+				}
+			}}
+			class="input"
+			type="text"
+		/>
+		<pre>
 				{JSON.stringify(data, null, 2)}
-			</pre>
-		</div>
-	</section>
-{/if}
+		</pre>
+	</div>
+</section>

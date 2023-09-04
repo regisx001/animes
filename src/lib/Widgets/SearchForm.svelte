@@ -1,55 +1,35 @@
 <script lang="ts">
 	import { searchStore } from '$lib/stores';
-
+	import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
+	import { getModalStore } from '@skeletonlabs/skeleton';
+	const modalStore = getModalStore();
 	let keywords: string;
-	function validatingSearch() {
-		// Todo Later
-		if (keywords === '') {
-			return;
-		}
+
+	function openSearchModal() {
+		const modal: ModalSettings = {
+			type: 'component',
+			component: 'realtimeSearch'
+		};
+		modalStore.trigger(modal);
 	}
 </script>
 
-<form
-	on:submit={validatingSearch}
-	class=" max-w-lg flex flex-row w-full"
-	action="/search"
-	method="get"
+<button on:click={openSearchModal} class="btn space-x-4 variant-soft hover:variant-soft-primary">
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		class="icon icon-tabler icon-tabler-search"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		stroke-width="2"
+		stroke="currentColor"
+		fill="none"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	>
+		<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+		<path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+		<path d="M21 21l-6 -6" />
+	</svg>
+	<small class="hidden md:inline-block">Ctrl+K</small></button
 >
-	<div class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
-		<div class="input-group-shim">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="icon icon-tabler icon-tabler-search"
-				width="24"
-				height="24"
-				viewBox="0 0 24 24"
-				stroke-width="2"
-				stroke="currentColor"
-				fill="none"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-			>
-				<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-				<path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-				<path d="M21 21l-6 -6" />
-			</svg>
-		</div>
-		<input
-			bind:value={keywords}
-			on:input={() => {
-				if (keywords !== '') {
-					setTimeout(() => {
-						$searchStore = keywords;
-					}, 500);
-				} else {
-					$searchStore = null;
-				}
-			}}
-			name="keywords"
-			type="search"
-			placeholder="Search..."
-		/>
-		<button class="variant-filled-secondary">Submit</button>
-	</div>
-</form>

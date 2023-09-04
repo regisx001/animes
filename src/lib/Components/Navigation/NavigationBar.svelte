@@ -1,9 +1,7 @@
 <script>
-	import SearchForm from './../../Widgets/SearchForm.svelte';
 	import { AppBar, LightSwitch } from '@skeletonlabs/skeleton';
-	import { GithubIcon } from '$lib';
+	import { GithubIcon, SearchTrigger } from '$lib';
 	import Logo from './Logo.svelte';
-	import RealtimeSearch from '$lib/Widgets/RealtimeSearch.svelte';
 </script>
 
 <AppBar>
@@ -18,8 +16,7 @@
 		</a>
 	</svelte:fragment>
 	<div class="relative flex flex-col justify-center items-center">
-		<SearchForm />
-		<RealtimeSearch />
+		<SearchTrigger />
 	</div>
 	<svelte:fragment slot="trail">
 		<div class="flex flex-row gap-4 items-center">
