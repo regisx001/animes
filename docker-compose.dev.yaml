@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  front:
+    restart: always
+    build: .
+    volumes:
+      - ./:/app
+    ports:
+      - "3000:3000"
+    command: ["pnpm","dev", "--host", "0.0.0.0"]

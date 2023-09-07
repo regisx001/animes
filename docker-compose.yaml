@@ -1,23 +1,9 @@
-
-version: "3"
+version: '3'
 
 services:
-  external:
-    container_name: external
-    # The name of the image that will be created when building this container
-    image: external-website
-    build:
-      context: .
-      dockerfile: Dockerfile
-    user: "node"
-    environment:
-      # Internal server error messages will not send stacktrace to the browser in production
-      - NODE_ENV=production
-      # Sets the timezone of the containers OS
-      - TZ=Pacific/Auckland
-    # Points to a file with the sensitive environment variables
-    env_file:
-      - .env
-    restart: unless-stopped
+  front:
+    restart: always
+    build: .
     ports:
-      - 3000:5050
+      - "8000:3000"
+    command: ["node","build/index.js"]
