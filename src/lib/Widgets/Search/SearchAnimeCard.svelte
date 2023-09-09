@@ -14,17 +14,18 @@
 		<!-- <div>{JSON.stringify(anime, null, 2)}</div> -->
 		<a
 			on:click={() => {
-				$searchStore = null;
+				$searchStore = 'no-data';
 				modalStore.close();
 			}}
 			href="/anime?id={anime.id}"
 		>
-			<div class="flex flex-row hover:bg-surface-700 w-full h-[17rem] p-2">
+			<div class="flex flex-row hover:variant-glass-surface rounded-2xl w-full h-[16rem] p-2">
 				<!-- <img src={anime.image} alt="" srcset="" /> -->
 				<div
 					style="background-image: url({anime.image});"
-					class=" rounded-xl shadow-xl w-48 h-64 bg-cover bg-no-repeat"
+					class=" rounded-xl shadow-xl w-[11rem] h-[15rem] bg-cover bg-no-repeat"
 				/>
+
 				<div class="flex flex-col gap-4 justify-center">
 					<strong class="font-extrabold text-2xl">
 						{anime.title}
