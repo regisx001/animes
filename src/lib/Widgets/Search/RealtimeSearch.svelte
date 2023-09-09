@@ -32,7 +32,14 @@
 			isReady = true;
 		});
 	}
+	function handleEscape(e: KeyboardEvent) {
+		if (e.key === 'Escape') {
+			$searchStore = 'no-data';
+		}
+	}
 </script>
+
+<svelte:window on:keydown={handleEscape} />
 
 <section class="mt-10 mb-auto h-[600px] hide-scrollbar z-50 w-full lg:w-[55%] xl:w-[65%]">
 	<div class="card rounded-xl variant-glass-surface h-full">
