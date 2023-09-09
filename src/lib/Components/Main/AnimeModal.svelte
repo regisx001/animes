@@ -17,7 +17,7 @@
 
 <Modal
 	on:backdrop={() => {
-		$searchStore = null;
+		$searchStore = 'no-data';
 	}}
 	components={modalComponentRegistry}
 />
