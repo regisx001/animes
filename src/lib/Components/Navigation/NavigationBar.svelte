@@ -1,6 +1,6 @@
 <script>
 	import { AppBar, LightSwitch } from '@skeletonlabs/skeleton';
-	import { GithubIcon, SearchTrigger } from '$lib';
+	import { GithubIcon, SearchTrigger, ThemeTrigger } from '$lib';
 	import Logo from './Logo.svelte';
 </script>
 
@@ -22,6 +22,7 @@
 		<div class="flex flex-row gap-4 items-center">
 			<SearchTrigger />
 			<!-- <LightSwitch /> -->
+			<ThemeTrigger />
 			<GithubIcon />
 		</div>
 	</svelte:fragment>
