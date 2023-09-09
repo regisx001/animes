@@ -25,6 +25,7 @@ export { default as LatestEpisodesSideBar } from "./Widgets/LatestEpisodesSideBa
 export { default as RealtimeSearch } from "./Widgets/Search/RealtimeSearch.svelte"
 export { default as SearchAnimeCard } from "./Widgets/Search/SearchAnimeCard.svelte"
 export { default as SearchTrigger } from "./Widgets/Search/SearchTrigger.svelte"
+export { default as WaitingAnimation } from "./Widgets/Search/WaitingAnimation.svelte"
 
 
 

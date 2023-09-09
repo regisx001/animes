@@ -32,6 +32,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Home | Core Anime</title>
+</svelte:head>
+
 {#if is_ready}
 	<Carousel />
 	<RecentAnimePage {data} />

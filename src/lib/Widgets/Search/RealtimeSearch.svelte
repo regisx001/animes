@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { gogo, SearchAnimeCard } from '$lib';
+	import { gogo, SearchAnimeCard, WaitingAnimation } from '$lib';
 	import { searchStore } from '$lib/stores';
-	import { beforeUpdate, onMount } from 'svelte';
+	import { onMount } from 'svelte';
 
 	$: searchKeyWords = '';
 	$: data = {};
 	$: isReady = false;
+	$: waiting = false;
 	onMount(async () => {
 		searchStore.subscribe((keywords) => {
 			if (keywords === 'no-data') {
@@ -20,9 +20,13 @@
 	$: {
 		new Promise(async (resolve, reject) => {
 			isReady = false;
-			const animes = await gogo.search(searchKeyWords);
-			resolve(animes);
+			waiting = true;
+			setTimeout(async () => {
+				const animes = await gogo.search(searchKeyWords);
+				resolve(animes);
+			}, 500);
 		}).then((val) => {
+			waiting = false;
 			// @ts-ignore
 			data = val;
 			isReady = true;
@@ -55,9 +59,7 @@
 				bind:value={searchKeyWords}
 				on:input={() => {
 					if (searchKeyWords !== '') {
-						setTimeout(() => {
-							$searchStore = searchKeyWords;
-						}, 500);
+						$searchStore = searchKeyWords;
 					} else {
 						$searchStore = 'no-data';
 					}
@@ -69,6 +71,9 @@
 		</header>
 		{#if isReady}
 			<SearchAnimeCard {data} />
+		{/if}
+		{#if waiting}
+			<WaitingAnimation />
 		{/if}
 	</div>
 </section>
