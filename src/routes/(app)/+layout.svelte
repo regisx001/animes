@@ -1,7 +1,28 @@
 <script lang="ts">
 	import { AppShell } from '@skeletonlabs/skeleton';
-	import { NavigationBar, LatestEpisodesSideBar } from '$lib';
+	import { NavigationBar, showSearchModalStore } from '$lib';
+	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
+	const modalStore = getModalStore();
+	function searchShortcut(event: KeyboardEvent) {
+		if (event.ctrlKey && event.key === 'k') {
+			event.preventDefault();
+			// console.log('helo');
+			if ($showSearchModalStore === false) {
+				const modal: ModalSettings = {
+					type: 'component',
+					component: 'realtimeSearch'
+				};
+				$showSearchModalStore = true;
+				modalStore.trigger(modal);
+			} else {
+				$showSearchModalStore = false;
+				modalStore.clear();
+			}
+		}
+	}
 </script>
+
+<svelte:window on:keydown={searchShortcut} />
 
 <AppShell>
 	<svelte:fragment slot="header">

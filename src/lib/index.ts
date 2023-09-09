@@ -11,7 +11,10 @@ export { default as AnimeModal } from "./Components/Main/AnimeModal.svelte"
 export { gogo } from "./providers"
 
 // Stores
-export { searchStore } from "./stores"
+export { searchStore, showSearchModalStore } from "./stores"
+
+
+
 
 
 // Widgets

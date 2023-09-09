@@ -16,11 +16,12 @@
 		</a>
 	</svelte:fragment>
 	<div class="relative flex flex-col justify-center items-center">
-		<SearchTrigger />
+		<!-- <SearchTrigger /> -->
 	</div>
 	<svelte:fragment slot="trail">
 		<div class="flex flex-row gap-4 items-center">
-			<LightSwitch />
+			<SearchTrigger />
+			<!-- <LightSwitch /> -->
 			<GithubIcon />
 		</div>
 	</svelte:fragment>
