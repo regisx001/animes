@@ -5,5 +5,4 @@ services:
     restart: always
     build: .
     ports:
-      - "8000:3000"
-    command: ["node","build/index.js"]
+      - "5000:80"

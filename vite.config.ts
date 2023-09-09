@@ -17,9 +17,5 @@ export default defineConfig({
 			// '@stores': path.resolve(__dirname, './src/lib/stores'),
 			// '@styles': path.resolve(__dirname, './src/lib/styles'),
 		},
-	},
-	preview: {
-		port: 3000,
-		strictPort: false,
 	}
 });

@@ -1,26 +1,21 @@
-FROM node:16
+# FROM node:16
 
-ENV NODE_ENV development
+# ENV NODE_ENV development
 
-RUN npm install -g pnpm
+# RUN npm install -g pnpm
 
-WORKDIR /app
+# WORKDIR /app
 
-COPY package.json pnpm-lock.yaml ./
+# COPY package.json pnpm-lock.yaml ./
 
-RUN pnpm install --frozen-lockfile
+# RUN pnpm install --frozen-lockfile
 
-COPY . .
+# COPY . .
 
-RUN rm svelte.config.js 
-RUN mv node.svelte.config.js svelte.config.js
+# RUN pnpm build
 
-RUN rm vite.config.ts 
-RUN mv node.vite.config.ts vite.config.ts 
+# RUN cd build && ls
 
-RUN pnpm build
+FROM nginx:1.19-alpine
 
-RUN cd build && ls
-
-EXPOSE 3000
-EXPOSE 24678
+COPY  ./build /usr/share/nginx/html
