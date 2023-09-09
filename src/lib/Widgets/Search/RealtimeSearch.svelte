@@ -9,15 +9,12 @@
 	$: isReady = false;
 	onMount(async () => {
 		searchStore.subscribe((keywords) => {
-			// @ts-ignore
-			searchKeyWords = keywords;
+			if (keywords === 'no-data') {
+			} else {
+				// @ts-ignore
+				searchKeyWords = keywords;
+			}
 		});
-
-		// if (searchKeyWords !== '' && searchKeyWords !== null) {
-		// isReady = false;
-		// data = await gogo.search(searchKeyWords);
-		// isReady = true;
-		// }
 	});
 
 	$: {
@@ -33,8 +30,8 @@
 	}
 </script>
 
-<section class="mt-10 mb-auto max-h-[600px] hide-scrollbar z-50 lg:w-[55%] xl:w-[65%]">
-	<div class="card">
+<section class="mt-10 mb-auto h-[600px] hide-scrollbar z-50 lg:w-[55%] xl:w-[65%]">
+	<div class="card variant-glass-surface h-full">
 		<input
 			placeholder="Search ...."
 			bind:value={searchKeyWords}
@@ -44,7 +41,7 @@
 						$searchStore = searchKeyWords;
 					}, 500);
 				} else {
-					$searchStore = null;
+					$searchStore = 'no-data';
 				}
 			}}
 			class="input"
