@@ -8,7 +8,7 @@
 	<svelte:fragment slot="lead">
 		<a class="flex justify-center items-center gap-4" href="/">
 			<Logo />
-			<div class="flex flex-row gap-[0.0125rem]">
+			<div class="hidden md:flex flex-row gap-[0.0125rem]">
 				<span class="font-bold text-2xl text-primary-500">Core</span><span
 					class="font-bold text-2xl text-surface-400">Anime</span
 				>
