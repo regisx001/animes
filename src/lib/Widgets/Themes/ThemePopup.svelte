@@ -9,7 +9,7 @@
 	];
 </script>
 
-<div class="card p-2 w-52 shadow-xl" data-popup="popupCombobox">
+<div class="card p-2 w-48 shadow-xl" data-popup="popupCombobox">
 	<div class="p-4 flex flex-row justify-between">
 		<span class="font-extrabold">Mode : </span>
 		<LightSwitch />
