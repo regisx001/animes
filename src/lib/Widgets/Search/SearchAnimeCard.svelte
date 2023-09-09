@@ -9,7 +9,7 @@
     {JSON.stringify(data, null, 2)}
 </pre> -->
 
-<section class="flex flex-col gap-2 py-2 max-h-[580px] overflow-y-scroll">
+<section class="flex flex-col gap-2 py-2 max-h-[520px] overflow-y-scroll">
 	{#each data?.results as anime}
 		<!-- <div>{JSON.stringify(anime, null, 2)}</div> -->
 		<a
