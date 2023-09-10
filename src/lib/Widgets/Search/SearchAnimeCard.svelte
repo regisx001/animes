@@ -9,9 +9,10 @@
     {JSON.stringify(data, null, 2)}
 </pre> -->
 
-<section class="flex flex-col gap-2 py-2 max-h-[520px] overflow-y-scroll">
+<section
+	class="grid max-h-[520px] lg:max-h-[700px] grid-cols-[repeat(auto-fill,minmax(140px,1fr))] lg:grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-2 overflow-y-scroll"
+>
 	{#each data?.results as anime}
-		<!-- <div>{JSON.stringify(anime, null, 2)}</div> -->
 		<a
 			on:click={() => {
 				$searchStore = 'no-data';
@@ -19,20 +20,22 @@
 			}}
 			href="/anime?id={anime.id}"
 		>
-			<div class="flex flex-row hover:variant-glass-surface rounded-2xl w-full h-[16rem] p-2">
-				<!-- <img src={anime.image} alt="" srcset="" /> -->
+			<div class="flex flex-col hover:variant-glass-surface rounded-2xl p-2">
 				<div
 					style="background-image: url({anime.image});"
-					class=" rounded-xl shadow-xl w-[11rem] h-[15rem] bg-cover bg-no-repeat"
-				/>
+					class="relative rounded-xl shadow-xl w-full h-[15rem] lg:h-[17rem] bg-center bg-cover bg-no-repeat"
+				>
+					<div class="variant-glass-primary rounded absolute -top-0 font-bold -right-0 z-10">
+						<span class="chip variant-soft">
+							<span>{anime.releaseDate}</span>
+						</span>
+					</div>
+				</div>
 
-				<div class="flex flex-col gap-4 justify-center">
-					<strong class="font-extrabold text-2xl">
+				<div class="flex flex-col justify-center">
+					<span class="font-bold">
 						{anime.title}
-					</strong>
-					<strong class="font-extrabold">
-						{anime.releaseDate}
-					</strong>
+					</span>
 				</div>
 			</div>
 		</a>

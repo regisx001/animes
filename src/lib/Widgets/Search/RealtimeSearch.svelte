@@ -41,7 +41,9 @@
 
 <svelte:window on:keydown={handleEscape} />
 
-<section class="mt-10 mb-auto h-[600px] hide-scrollbar z-50 w-full lg:w-[55%] xl:w-[65%]">
+<section
+	class="mt-10 mb-auto h-[600px] lg:h-[800px] hide-scrollbar z-50 w-full lg:w-[55%] xl:w-[65%]"
+>
 	<div class="card rounded-xl variant-glass-surface h-full">
 		<header class="rounded-t-xl bg-surface-300-600-token flex items-center">
 			<div class="text-xl ml-4">
