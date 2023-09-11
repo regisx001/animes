@@ -16,32 +16,14 @@
 			}}
 			href="/anime?id={anime.id}"
 		>
-			<div class="flex lg:hidden flex-col hover:variant-glass-surface rounded-2xl p-2">
-				<div
-					style="background-image: url({anime.image});"
-					class="relative rounded-xl shadow-xl w-full h-[15rem] lg:h-[17rem] bg-center bg-cover bg-no-repeat"
-				>
-					<div class="variant-glass-primary rounded absolute -top-0 font-bold -right-0 z-10">
-						<span class="chip variant-soft">
-							<span>{anime.releaseDate}</span>
-						</span>
-					</div>
-				</div>
-
-				<div class="flex flex-col justify-center">
-					<span class="font-bold">
-						{anime.title}
-					</span>
-				</div>
-			</div>
-			<div class="hidden lg:flex flex-row hover:variant-glass-surface rounded-2xl p-2">
+			<div class="flex flex-col lg:flex-row hover:variant-glass-surface rounded-2xl p-2">
 				<div
 					style="background-image: url({anime.image});"
 					class="relative rounded-xl shadow-xl w-[22rem] h-[15rem] lg:h-[17rem] bg-center bg-cover bg-no-repeat"
 				/>
 
 				<div class="flex flex-col h-[15rem] lg:h-[17rem] w-full mt-2 ml-5 justify-center">
-					<div class="flex flex-row">
+					<div class="hidden lg:flex flex-row">
 						<span class="mr-1 font-bold">Year :</span>
 						<span class="rounded font-bold chip variant-glass-primary">
 							<span>{anime.releaseDate}</span>
@@ -53,7 +35,7 @@
 						{anime.title}
 					</h1>
 
-					<div class="flex flex-row w-full mt-auto mb-2">
+					<div class="hidden lg:flex flex-row w-full mt-auto mb-2">
 						<span class="mr-1 font-bold">Type :</span>
 						<span class="rounded ml-5 font-bold chip variant-glass-error">
 							<span>{anime.subOrDub}</span>
