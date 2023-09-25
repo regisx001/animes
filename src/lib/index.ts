@@ -30,6 +30,8 @@ export { default as WaitingAnimation } from "./Widgets/Search/WaitingAnimation.s
 
 export { default as ThemeTrigger } from "./Widgets/Themes/ThemeTrigger.svelte"
 
+export { default as FilteringForm } from "./Widgets/explore/FilteringForm.svelte"
+
 
 // Pages
 export { default as RecentAnimePage } from "./Components/Pages/RecentAnimePage.svelte"
