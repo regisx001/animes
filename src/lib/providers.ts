@@ -1,4 +1,5 @@
-import { ANIME } from "@consumet/extensions"
+import { ANIME, META } from "@consumet/extensions"
 
 
 export const gogo = new ANIME.Gogoanime()
+export const animlist = new META.Anilist() 
