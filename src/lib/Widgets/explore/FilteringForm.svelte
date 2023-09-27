@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
+	import { Accordion, AccordionItem, ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
 	export let searchParams: any;
-	$: season = searchParams?.season;
-	$: type = searchParams?.type;
-	$: status = searchParams?.status;
+	let season = searchParams?.season;
+	let type = searchParams?.type;
+	let status = searchParams?.status;
 	$: category = searchParams?.category;
 	$: kw = searchParams?.kw;
 	$: open = !season || !type || !status || !category || !kw;
@@ -22,36 +22,49 @@
 			</svelte:fragment>
 			<svelte:fragment slot="content">
 				<form action="" method="get">
-					<section class="flex flex-row w-full py-6 gap-2">
-						<div class="w-full">
+					<section class="flex flex-col sm:flex-row w-full py-6 gap-2">
+						<div class="w-full rounded-lg p-2 variant-soft-tertiary">
 							<h2 class="h3 font-semibold text-center">Season :</h2>
-							<select name="season" class="select h-full p-4" size="4" value={season}>
-								<option value="WINTER">Winter</option>
-								<option value="SUMMER">Summer</option>
-								<option value="SPRING">Spring</option>
-								<option value="FALL">Fall</option>
-							</select>
+
+							<ListBox>
+								<ListBoxItem bind:group={season} name="season" value="">Not Specific</ListBoxItem>
+								<ListBoxItem bind:group={season} name="season" value="WINTER">Winter</ListBoxItem>
+								<ListBoxItem bind:group={season} name="season" value="FALL">Fall</ListBoxItem>
+								<ListBoxItem bind:group={season} name="season" value="SPRING">Spring</ListBoxItem>
+								<ListBoxItem bind:group={season} name="season" value="SUMMER">Summer</ListBoxItem>
+							</ListBox>
 						</div>
-						<div class="w-full">
+
+						<div class="w-full rounded-lg p-2 variant-soft-tertiary">
 							<h2 class="h3 font-semibold text-center">Type :</h2>
 
-							<select name="type" class="select h-full p-4" size="4" value={type}>
-								<option value="TV">Tv</option>
-								<option value="OVA">Ova</option>
-								<option value="ONA">Ona</option>
-								<option value="MOVIE">Movie</option>
-							</select>
+							<ListBox>
+								<ListBoxItem bind:group={type} name="type" value="">Not Specific</ListBoxItem>
+								<ListBoxItem bind:group={type} name="type" value="TV">Tv</ListBoxItem>
+								<ListBoxItem bind:group={type} name="type" value="OVA">Ova</ListBoxItem>
+								<ListBoxItem bind:group={type} name="type" value="ONA">Ona</ListBoxItem>
+								<ListBoxItem bind:group={type} name="type" value="MOVIE">Movie</ListBoxItem>
+							</ListBox>
 						</div>
-						<div class="w-full">
-							<h2 class="h3 font-semibold text-center">Status :</h2>
 
-							<select name="status" class="select h-full p-4" size="4" value={status}>
-								<option value="RELEASING">Releasing</option>
-								<option value="NOT_YET_RELEASED">Not Yet Released</option>
-								<option value="FINISHED">Finished</option>
-								<option value="CANCELLED">Cancelled</option>
-								<option value="HIATUS">Hiatus</option>
-							</select>
+						<div class="w-full rounded-lg p-2 variant-soft-tertiary">
+							<h2 class="h3 font-semibold text-center">Status :</h2>
+							<ListBox>
+								<ListBoxItem bind:group={status} name="status" value="">Not Specific</ListBoxItem>
+
+								<ListBoxItem bind:group={status} name="status" value="RELEASING">
+									Releasing
+								</ListBoxItem>
+								<ListBoxItem bind:group={status} name="status" value="NOT_YET_RELEASED"
+									>Not Yet Released
+								</ListBoxItem>
+								<ListBoxItem bind:group={status} name="status" value="FINISHED">
+									Finished
+								</ListBoxItem>
+								<ListBoxItem bind:group={status} name="status" value="CANCELLED">
+									Cancelled
+								</ListBoxItem>
+							</ListBox>
 						</div>
 					</section>
 					<section class="flex flex-row py-6 gap-2">

@@ -21,3 +21,9 @@ Accordion autocollapse when Searching .
 Make it  fully reactive .
 
 Plans to add particular.js to The Background .
+
+### Functionality / UI/UX :
+
+Change `<select>` with ListBox .
+
+Minor UI changes.

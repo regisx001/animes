@@ -26,19 +26,17 @@
 	$: {
 		new Promise(async (resolve, reject) => {
 			isReady = false;
-			const animes = await animlist.advancedSearch(
-				searchParams?.kw,
-				undefined,
-				undefined,
-				undefined,
-				searchParams.type,
-				undefined,
-				[searchParams?.category],
-				undefined,
-				undefined,
-				searchParams?.status,
-				searchParams?.season
-			);
+			const animes = await (
+				await fetch(
+					`https://api.consumet.org/meta/anilist/advanced-search
+					${searchParams.kw != '' ? `?query=${searchParams.kw}` : ''}
+					${searchParams.season != '' ? `?season=${searchParams.season}` : ''}
+					${searchParams.type != '' ? `?format=${searchParams.type}` : ''}
+					${searchParams.status != '' ? `?status=${searchParams.status}` : ''}
+					${searchParams.category != '' ? `?category=[${searchParams.category}]` : ''}`
+				)
+			).json();
+
 			resolve(animes);
 		}).then((val) => {
 			// @ts-ignore
