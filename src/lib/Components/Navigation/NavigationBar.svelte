@@ -15,8 +15,10 @@
 			</div>
 		</a>
 	</svelte:fragment>
-	<div class="relative flex flex-col justify-center items-center">
-		<!-- <SearchTrigger /> -->
+	<div class="relative flex">
+		<a href="/explore" class="btn text-base font-extrabold hover:variant-soft-primary rounded-md">
+			Explore
+		</a>
 	</div>
 	<svelte:fragment slot="trail">
 		<div class="flex flex-row gap-4 items-center">
