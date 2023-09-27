@@ -32,6 +32,9 @@ export { default as ThemeTrigger } from "./Widgets/Themes/ThemeTrigger.svelte"
 
 export { default as FilteringForm } from "./Widgets/explore/FilteringForm.svelte"
 
+export { default as EpisodeIframe } from "./Widgets/episode/EpisodeIframe.svelte"
+export { default as EpisodeNumbers } from "./Widgets/episode/EpisodeNumbers.svelte"
+
 
 // Pages
 export { default as RecentAnimePage } from "./Components/Pages/RecentAnimePage.svelte"
