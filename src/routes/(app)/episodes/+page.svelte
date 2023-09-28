@@ -1,6 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { EpisodeIframe, EpisodeNumbers, gogo, EpisodeLoader } from '$lib';
+	import {
+		EpisodeIframe,
+		EpisodeNumbers,
+		gogo,
+		EpisodeLoader,
+		EpisodeOptions,
+		EpisodeChangingLoader
+	} from '$lib';
 	import { onMount } from 'svelte';
 
 	let episodeId: string;
@@ -43,32 +50,29 @@
 		}).then((val) => {
 			// @ts-ignore
 			episode = val;
-			// isEpisodeReady = true;
+			isEpisodeReady = true;
 		});
 	}
 </script>
 
-<!-- <EpisodeLoader /> -->
-
 <section class="flex flex-col lg:flex-row h-full w-full">
 	{#if isReady}
-		<div class="relative p-10 h-full w-full lg:w-[70%]">
+		<div class="relative p-4 lg:p-10 lg:pl-24 w-full lg:w-[70%]">
 			{#if isEpisodeReady}
 				<EpisodeIframe
 					{episode}
 					title={anime.title + ' Episode ' + episodeId.split('-episode-')[1]}
 				/>
+				<EpisodeOptions {episode} {anime} {episodeId} />
+			{:else}
+				<EpisodeChangingLoader />
 			{/if}
 		</div>
 
 		<div class="h-full w-full lg:w-[30%]">
-			<EpisodeNumbers {anime} />
+			<EpisodeNumbers {anime} {episodeId} />
 		</div>
 	{:else}
 		<EpisodeLoader />
 	{/if}
 </section>
-
-<!-- <pre class="pre">
-	{JSON.stringify(data.anime?.episodes.slice(0, 60), null, 2)}
-</pre> -->

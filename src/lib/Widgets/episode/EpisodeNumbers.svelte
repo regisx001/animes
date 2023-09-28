@@ -3,6 +3,7 @@
 	import type { PopupSettings } from '@skeletonlabs/skeleton';
 
 	export let anime: any;
+	export let episodeId: any;
 
 	$: animeEpisodes = anime.episodes;
 	$: animeEpisodesLength = animeEpisodes.length;
@@ -19,8 +20,10 @@
 	};
 </script>
 
-<episode-info class="col-span-12 flex flex-col gap-3 p-5 md:col-span-4 md:gap-[1.5vw] md:p-0">
-	<header class="px-4 pt-10 flex items-center justify-between">
+<episode-info
+	class="col-span-12 flex flex-col gap-3 p-2 lg:p-5 md:col-span-4 md:gap-[1.5vw] md:p-0"
+>
+	<header class="px-4 pt-2 lg:pt-4 flex items-center justify-between">
 		<span class="text-lg font-bold md:text-[1.35vw]">Episodes</span>
 		<div class="flex gap-2 flex-row">
 			<button
@@ -96,42 +99,15 @@
 			</button>
 		</div>
 	</header>
-	<episodes class="grid grid-cols-7 gap-2 p-4 md:grid-cols-6 md:gap-[0.75vw]">
+	<episodes class="grid grid-cols-7 gap-2 pt-0 p-4 md:grid-cols-6 md:gap-[0.75vw]">
 		{#each episodes as episode}
 			<a
 				href="/episodes?id={episode.id}"
-				class="bg-primary-600 btn rounded py-3 text-sm font-semibold leading-none md:rounded-[0.35vw] md:py-[0.75vw] md:text-[1.2vw]"
+				class="{episodeId == episode.id
+					? 'bg-secondary-600'
+					: 'bg-primary-600'}  btn rounded py-3 text-sm font-semibold leading-none md:rounded-[0.35vw] md:py-[0.75vw] md:text-[1.2vw]"
 				>{episode.number}
 			</a>
 		{/each}
 	</episodes>
 </episode-info>
-
-<div class="card w-48 shadow-xl py-2" data-popup="episodes">
-	<nav class="list-nav p-4 -m-4 max-h-64 lg:max-h-[500px] overflow-y-auto">
-		<ul class="flex flex-col p-2 gap-1 py-1">
-			{#if animeEpisodesLength <= 60}
-				<li>
-					<button
-						on:click={() => {}}
-						class="option w-full h-full rounded variant-filled-primary hover:variant-filled-primary"
-					>
-						<span class="flex-auto text-left font-bold">{episodesRange}</span>
-					</button>
-				</li>
-			{:else if maxEpisode <= animeEpisodesLength}
-				<li>
-					<button
-						on:click={() => {
-							maxEpisode = maxEpisode + 60;
-						}}
-						class="option w-full h-full rounded variant-filled-primary hover:variant-filled-primary"
-					>
-						<span class="flex-auto text-left font-bold">Eps 61 - ...</span>
-					</button>
-				</li>
-			{/if}
-		</ul>
-	</nav>
-	<div class="arrow bg-surface-100-800-token" />
-</div>

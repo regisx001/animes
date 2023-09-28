@@ -36,6 +36,8 @@ export { default as EpisodeIframe } from "./Widgets/episode/EpisodeIframe.svelte
 export { default as EpisodeNumbers } from "./Widgets/episode/EpisodeNumbers.svelte"
 export { default as EpisodeLoader } from "./Widgets/episode/EpisodeLoader.svelte"
 export { default as EpisodeLightSwitch } from "./Widgets/episode/EpisodeLightSwitch.svelte"
+export { default as EpisodeOptions } from "./Widgets/episode/EpisodeOptions.svelte"
+export { default as EpisodeChangingLoader } from "./Widgets/episode/EpisodeChangingLoader.svelte"
 
 
 // Pages
