@@ -11,7 +11,7 @@ export { default as AnimeModal } from "./Components/Main/AnimeModal.svelte"
 export { gogo, animlist } from "./providers"
 
 // Stores
-export { searchStore, showSearchModalStore, themeStore } from "./stores"
+export { searchStore, showSearchModalStore, themeStore, EpisodeLightStore } from "./stores"
 
 
 
@@ -34,6 +34,8 @@ export { default as FilteringForm } from "./Widgets/explore/FilteringForm.svelte
 
 export { default as EpisodeIframe } from "./Widgets/episode/EpisodeIframe.svelte"
 export { default as EpisodeNumbers } from "./Widgets/episode/EpisodeNumbers.svelte"
+export { default as EpisodeLoader } from "./Widgets/episode/EpisodeLoader.svelte"
+export { default as EpisodeLightSwitch } from "./Widgets/episode/EpisodeLightSwitch.svelte"
 
 
 // Pages

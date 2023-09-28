@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { EpisodeIframe, EpisodeNumbers, gogo } from '$lib';
+	import { EpisodeIframe, EpisodeNumbers, gogo, EpisodeLoader } from '$lib';
 	import { onMount } from 'svelte';
 
 	let episodeId: string;
@@ -35,6 +35,7 @@
 	$: {
 		new Promise(async (resolve, reject) => {
 			isEpisodeReady = false;
+
 			const episode = await (
 				await fetch(`https://api.consumet.org/anime/gogoanime/watch/${episodeId}`)
 			).json();
@@ -42,14 +43,16 @@
 		}).then((val) => {
 			// @ts-ignore
 			episode = val;
-			isEpisodeReady = true;
+			// isEpisodeReady = true;
 		});
 	}
 </script>
 
+<!-- <EpisodeLoader /> -->
+
 <section class="flex flex-col lg:flex-row h-full w-full">
 	{#if isReady}
-		<div class="p-10 h-full w-full lg:w-[70%]">
+		<div class="relative p-10 h-full w-full lg:w-[70%]">
 			{#if isEpisodeReady}
 				<EpisodeIframe
 					{episode}
@@ -61,6 +64,8 @@
 		<div class="h-full w-full lg:w-[30%]">
 			<EpisodeNumbers {anime} />
 		</div>
+	{:else}
+		<EpisodeLoader />
 	{/if}
 </section>
 

@@ -1,7 +1,10 @@
 <script lang="ts">
+	import { EpisodeLightStore } from '$lib';
 	export let episode: any;
 	export let serverURL: any = undefined;
 	export let title: string = 'Something';
+
+	let boxShadow = `box-shadow: 2px -1px 0px 200px rgba(0,0,0,0.9);-webkit-box-shadow: 2px -1px 0px 200px rgba(0,0,0,0.9);-moz-box-shadow: 2px -1px 0px 200px rgba(0,0,0,0.9);`;
 </script>
 
 <div class="overflow-hidden relative w-full aspect-video rounded-2xl">
