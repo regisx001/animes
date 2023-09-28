@@ -50,12 +50,12 @@
 <section class="flex flex-col lg:flex-row h-full w-full">
 	{#if isReady}
 		<div class="p-10 h-full w-full lg:w-[70%]">
-			<!-- {#if isEpisodeReady}
+			{#if isEpisodeReady}
 				<EpisodeIframe
 					{episode}
 					title={anime.title + ' Episode ' + episodeId.split('-episode-')[1]}
 				/>
-			{/if} -->
+			{/if}
 		</div>
 
 		<div class="h-full w-full lg:w-[30%]">
