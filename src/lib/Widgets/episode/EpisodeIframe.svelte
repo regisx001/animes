@@ -10,19 +10,23 @@
 <div class="overflow-hidden relative w-full aspect-video rounded-2xl">
 	{#if serverURL}
 		<iframe
-			allowfullscreen="true"
+			sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+			frameborder="0"
+			allow="encrypted-media"
+			allowfullscreen
 			class="absolute top-0 left-0 bottom-0 right-0 w-full h-full"
 			src={serverURL}
 			{title}
-			frameborder="0"
 		/>
 	{:else}
 		<iframe
-			allowfullscreen="true"
+			sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+			frameborder="0"
+			allow="encrypted-media"
+			allowfullscreen
 			class="absolute top-0 left-0 bottom-0 right-0 w-full h-full"
 			src={episode.headers.Referer}
 			{title}
-			frameborder="0"
 		/>
 	{/if}
 </div>
