@@ -4,18 +4,18 @@
 	import Logo from './Logo.svelte';
 </script>
 
-<AppBar>
+<AppBar background="bg-surface-900/5">
 	<svelte:fragment slot="lead">
 		<a class="flex justify-center items-center gap-4" href="/">
 			<Logo />
-			<div class="hidden md:flex flex-row gap-[0.0125rem]">
+			<!-- <div class="hidden md:flex flex-row gap-[0.0125rem]">
 				<span style="" class="font-bold text-2xl text-primary-500">Core</span>
 
 				<span style="" class="font-bold text-2xl text-surface-400">Anime</span>
-			</div>
+			</div> -->
 		</a>
 	</svelte:fragment>
-	<div class="relative flex">
+	<div class="relative flex items-center">
 		<a href="/explore" class="btn text-base font-extrabold hover:variant-soft-primary rounded-md">
 			Explore
 		</a>
@@ -23,7 +23,7 @@
 	<svelte:fragment slot="trail">
 		<div class="flex flex-row gap-4 items-center">
 			<ThemeTrigger />
-			<SearchTrigger />
+			<!-- <SearchTrigger /> -->
 			<GithubIcon />
 		</div>
 	</svelte:fragment>

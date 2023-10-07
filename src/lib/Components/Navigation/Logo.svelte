@@ -1,7 +1,13 @@
 <script lang="ts">
 </script>
 
-<svg xmlns="http://www.w3.org/2000/svg" width="20" height="32" fill="none" viewBox="0 0 20 32"
+<svg
+	class="mx-3"
+	xmlns="http://www.w3.org/2000/svg"
+	width="30"
+	height="45"
+	fill="none"
+	viewBox="0 0 20 32"
 	><path
 		fill="#7569E1"
 		fill-rule="evenodd"

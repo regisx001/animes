@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { AppShell } from '@skeletonlabs/skeleton';
-	import { NavigationBar, showSearchModalStore } from '$lib';
+	import { NavigationBar, showSearchModalStore, AppRail } from '$lib';
 	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 	const modalStore = getModalStore();
 	function searchShortcut(event: KeyboardEvent) {
@@ -28,7 +28,11 @@
 	<svelte:fragment slot="header">
 		<NavigationBar />
 	</svelte:fragment>
-	<!-- (sidebarLeft) -->
+
+	<svelte:fragment slot="sidebarLeft">
+		<AppRail />
+	</svelte:fragment>
+
 	<!-- (sidebarRight) -->
 	<!-- <svelte:fragment slot="sidebarRight">
 		<LatestEpisodesSideBar />

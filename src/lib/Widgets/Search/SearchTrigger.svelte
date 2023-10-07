@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { searchStore } from '$lib/stores';
-	import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
+	import type { ModalSettings } from '@skeletonlabs/skeleton';
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	const modalStore = getModalStore();
 	let keywords: string;

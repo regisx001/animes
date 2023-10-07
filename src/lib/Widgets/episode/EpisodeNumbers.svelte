@@ -8,9 +8,9 @@
 	$: animeEpisodes = anime.episodes;
 	$: animeEpisodesLength = animeEpisodes.length;
 
-	$: maxEpisode = 60;
-	$: episodes = animeEpisodes.slice(maxEpisode - 60, maxEpisode);
-	$: episodesRange = `EPS: 1 - ${animeEpisodesLength >= 60 ? '60' : animeEpisodesLength}`;
+	$: maxEpisode = 50;
+	$: episodes = animeEpisodes.slice(maxEpisode - 50, maxEpisode);
+	$: episodesRange = `EPS: 1 - ${animeEpisodesLength >= 50 ? '50' : animeEpisodesLength}`;
 
 	const popupCombobox: PopupSettings = {
 		event: 'focus-click',
@@ -28,11 +28,11 @@
 		<div class="flex gap-2 flex-row">
 			<button
 				on:click={() => {
-					maxEpisode = maxEpisode - 60;
-					episodesRange = `EPS: ${maxEpisode - 60 + 1} - ${maxEpisode}`;
+					maxEpisode = maxEpisode - 50;
+					episodesRange = `EPS: ${maxEpisode - 50 + 1} - ${maxEpisode}`;
 				}}
 				class="btn"
-				disabled={maxEpisode - 60 <= 0}
+				disabled={maxEpisode - 50 <= 0}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -66,8 +66,8 @@
 			</div>
 			<button
 				on:click={() => {
-					maxEpisode = maxEpisode + 60;
-					episodesRange = `EPS: ${maxEpisode - 60 + 1} - ${maxEpisode}`;
+					maxEpisode = maxEpisode + 50;
+					episodesRange = `EPS: ${maxEpisode - 50 + 1} - ${maxEpisode}`;
 				}}
 				class="btn"
 				disabled={maxEpisode >= animeEpisodesLength}
@@ -99,7 +99,7 @@
 			</button>
 		</div>
 	</header>
-	<episodes class="grid grid-cols-7 gap-2 pt-0 p-4 md:grid-cols-6 md:gap-[0.75vw]">
+	<episodes class="grid grid-cols-6 gap-1 pt-0 p-4 md:grid-cols-5 md:gap-3">
 		{#each episodes as episode}
 			<a
 				href="/episodes?id={episode.id}"
