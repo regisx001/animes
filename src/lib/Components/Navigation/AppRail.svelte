@@ -1,73 +1,186 @@
 <script lang="ts">
-	import { AppRail, AppRailTile, AppRailAnchor } from '@skeletonlabs/skeleton';
-	import { RailSearchTrigger } from '$lib';
-	let currentTile: number = 0;
+	import { RailSearchTrigger,RailEffect,RailButton } from '$lib';
 </script>
 
-<AppRail background="bg-surface-900/5">
-	<svelte:fragment slot="lead">
-		<AppRailTile
-			hover="bg-transparent"
-			active="bg-transparent"
-			bind:group={currentTile}
-			name="tile-1"
-			value={0}
-			title="tile-1"
+<div class="hidden h-full w-[6rem] lg:w-[7rem] flex-col justify-between py-10 md:flex">
+	<div>
+		<RailSearchTrigger />
+		<glider-container
+			class="mt-[2.8125vw] flex flex-col items-center gap-4"
+			style="position: relative;"
 		>
-			<RailSearchTrigger />
-		</AppRailTile>
-	</svelte:fragment>
-	<!-- --- -->
-	<AppRailTile bind:group={currentTile} name="tile-2" value={1} title="tile-2">
-		<a
-			href="/explore"
-			type="button"
-			class="bg-initial btn btn-icon relative w-[4vw] rounded-[0.75vw] p-0"
-			><div class="inline-grid">
-				<div
-					class="absolute inset-0 flex flex-col items-center justify-center gap-[0.35vw]"
-					style=""
-				>
-					<svg
-						class="w-[1.25vw] text-white"
-						viewBox="0 0 20 20"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-						><path
-							d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM5.65317 13.0185C5.26027 13.864 6.13598 14.7397 6.98146 14.3468L11.3472 12.318C11.7752 12.1191 12.1191 11.7752 12.318 11.3472L14.3468 6.98146C14.7397 6.13599 13.864 5.26026 13.0185 5.65317L8.65283 7.68197C8.22479 7.88089 7.88089 8.22479 7.68197 8.65283L5.65317 13.0185ZM10 8.9C10.61 8.9 11.1 9.39 11.1 10C11.1 10.61 10.61 11.1 10 11.1C9.39 11.1 8.9 10.61 8.9 10C8.9 9.39 9.39 8.9 10 8.9Z"
-							fill="currentColor"
-						/></svg
-					> <span class="text-[0.75vw] font-semibold capitalize leading-[1.05vw]">explore</span>
-				</div>
-			</div>
-		</a>
-	</AppRailTile>
-	<AppRailTile bind:group={currentTile} name="tile-3" value={2} title="tile-3">
-		<svelte:fragment slot="lead">(icon)</svelte:fragment>
-		<span>Tile 3</span>
-	</AppRailTile>
-	<!-- --- -->
-	<svelte:fragment slot="trail">
-		<AppRailAnchor href="https://github.com/zarqizoubir/animes" target="_blank" title="Account">
-			<div class="flex flex-col items-center gap-5">
+			<RailEffect />
+			
+			<RailButton  href="/" active title="Home">
 				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="icon icon-tabler icon-tabler-brand-github"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					stroke-width="2"
-					stroke="currentColor"
-					fill="none"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
-					<path
-						d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
-					/>
-				</svg>
-			</div>
-		</AppRailAnchor>
-	</svelte:fragment>
-</AppRail>
+							class="!text-black w-6 text-white"
+							viewBox="0 0 20 17"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							><path
+								d="M7.99961 16V12C7.99961 11.4477 8.44733 11 8.99961 11H10.9996C11.5519 11 11.9996 11.4477 11.9996 12V16C11.9996 16.55 12.4496 17 12.9996 17H15.9996C16.5496 17 16.9996 16.55 16.9996 16V9.99997C16.9996 9.44769 17.4473 8.99997 17.9996 8.99997H18.6996C19.1596 8.99997 19.3796 8.42997 19.0296 8.12997L10.6696 0.599971C10.2896 0.259971 9.70961 0.259971 9.32961 0.599971L0.96961 8.12997C0.62961 8.42997 0.83961 8.99997 1.29961 8.99997H1.99961C2.55189 8.99997 2.99961 9.44769 2.99961 9.99997V16C2.99961 16.55 3.44961 17 3.99961 17H6.99961C7.54961 17 7.99961 16.55 7.99961 16Z"
+								fill="currentColor"
+							/></svg
+						>
+			</RailButton>
+
+
+			<RailButton href="/explore" title="Explore">
+				<svg
+							class="w-6 text-white"
+							viewBox="0 0 20 20"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							><path
+								d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM5.65317 13.0185C5.26027 13.864 6.13598 14.7397 6.98146 14.3468L11.3472 12.318C11.7752 12.1191 12.1191 11.7752 12.318 11.3472L14.3468 6.98146C14.7397 6.13599 13.864 5.26026 13.0185 5.65317L8.65283 7.68197C8.22479 7.88089 7.88089 8.22479 7.68197 8.65283L5.65317 13.0185ZM10 8.9C10.61 8.9 11.1 9.39 11.1 10C11.1 10.61 10.61 11.1 10 11.1C9.39 11.1 8.9 10.61 8.9 10C8.9 9.39 9.39 8.9 10 8.9Z"
+								fill="currentColor"
+							/></svg
+						>
+			</RailButton>
+			
+			<RailButton href="/explore" title="List">
+				<svg
+							class="w-8 text-white"
+							viewBox="0 0 26 24"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							><g filter="url(#filter0_d_1011_784)"
+								><path
+									d="M9.6665 5H20.4998"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/><path
+									d="M9.6665 10H20.4998"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/><path
+									d="M9.6665 15H20.4998"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/><path
+									d="M5.5 5H5.50833"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/><path
+									d="M5.5 10H5.50833"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/><path
+									d="M5.5 15H5.50833"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/></g
+							><defs
+								><filter
+									id="filter0_d_1011_784"
+									x="-1"
+									y="0"
+									width="28"
+									height="28"
+									filterUnits="userSpaceOnUse"
+									color-interpolation-filters="sRGB"
+									><feFlood flood-opacity="0" result="BackgroundImageFix" /><feColorMatrix
+										in="SourceAlpha"
+										type="matrix"
+										values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+										result="hardAlpha"
+									/><feOffset dy="4" /><feGaussianBlur stdDeviation="2" /><feComposite
+										in2="hardAlpha"
+										operator="out"
+									/><feColorMatrix
+										type="matrix"
+										values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+									/><feBlend
+										mode="normal"
+										in2="BackgroundImageFix"
+										result="effect1_dropShadow_1011_784"
+									/><feBlend
+										mode="normal"
+										in="SourceGraphic"
+										in2="effect1_dropShadow_1011_784"
+										result="shape"
+									/></filter
+								></defs
+							></svg
+						>
+			</RailButton>
+
+			<RailButton href="/explore" title="Schedule">
+				<svg
+							class="w-6 text-white"
+							viewBox="0 0 18 20"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							><path
+								d="M15.667 2.49998H15.3337C15.0575 2.49998 14.8337 2.27612 14.8337 1.99998V1.66665C14.8337 1.20831 14.4587 0.833313 14.0003 0.833313C13.542 0.833313 13.167 1.20831 13.167 1.66665V1.99998C13.167 2.27612 12.9431 2.49998 12.667 2.49998H5.33366C5.05752 2.49998 4.83366 2.27612 4.83366 1.99998V1.66665C4.83366 1.20831 4.45866 0.833313 4.00033 0.833313C3.54199 0.833313 3.16699 1.20831 3.16699 1.66665V1.99998C3.16699 2.27612 2.94313 2.49998 2.66699 2.49998H2.33366C1.41699 2.49998 0.666992 3.24998 0.666992 4.16665V17.5C0.666992 18.4166 1.41699 19.1666 2.33366 19.1666H15.667C16.5837 19.1666 17.3337 18.4166 17.3337 17.5V4.16665C17.3337 3.24998 16.5837 2.49998 15.667 2.49998ZM14.8337 17.5H3.16699C2.70866 17.5 2.33366 17.125 2.33366 16.6666V6.66665H15.667V16.6666C15.667 17.125 15.292 17.5 14.8337 17.5Z"
+								fill="currentColor"
+							/></svg
+						> 
+			</RailButton>
+			
+			<RailButton href="/explore" title="forum">
+				<svg
+							class="w-6 text-white"
+							viewBox="0 0 18 17"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+							><path
+								d="M15.667 4.00002H15.3337C15.0575 4.00002 14.8337 4.22388 14.8337 4.50002V10.6667C14.8337 11.125 14.4587 11.5 14.0003 11.5H4.50033C4.22418 11.5 4.00033 11.7239 4.00033 12V12.3334C4.00033 13.25 4.75033 14 5.66699 14H13.7932C13.9258 14 14.053 14.0527 14.1468 14.1465L16.4801 16.4798C16.7951 16.7948 17.3337 16.5717 17.3337 16.1262V5.66669C17.3337 4.75002 16.5837 4.00002 15.667 4.00002ZM13.167 8.16669V2.33335C13.167 1.41669 12.417 0.666687 11.5003 0.666687H2.33366C1.41699 0.666687 0.666992 1.41669 0.666992 2.33335V11.9596C0.666992 12.405 1.20556 12.6281 1.52055 12.3131L3.85388 9.9798C3.94765 9.88603 4.07482 9.83335 4.20743 9.83335H11.5003C12.417 9.83335 13.167 9.08335 13.167 8.16669Z"
+								fill="currentColor"
+							/></svg
+						>  
+			</RailButton>
+			
+			
+			
+			</glider-container
+		>
+	</div>
+	<div class="flex flex-col-reverse items-center gap-[1vw]">
+		<button
+			type="button"
+			class="bg-initial btn btn-icon w-[3.375vw] flex-col justify-center gap-[0.45vw] p-0 text-sm"
+			><svg
+				class="w-[1.25vw] text-white"
+				viewBox="0 0 20 20"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+				><g clip-path="url(#clip0_3607_1064)"
+					><path
+						d="M16.4153 10.9913C16.2768 10.883 16.2068 10.71 16.2233 10.5349C16.2398 10.3606 16.2504 10.1838 16.2504 9.99999C16.2504 9.81617 16.2398 9.63937 16.2233 9.46504C16.2068 9.28999 16.2768 9.11702 16.4153 9.00871L17.9504 7.80832C18.1087 7.68332 18.1504 7.45832 18.0504 7.27499L16.3837 4.39166C16.2837 4.20832 16.0587 4.14166 15.8754 4.20832L14.0653 4.93527C13.9011 5.0012 13.7152 4.9742 13.5704 4.87252C13.2804 4.66886 12.9757 4.49056 12.654 4.33992C12.4935 4.26476 12.3766 4.11725 12.3514 3.9418L12.0754 2.01666C12.0504 1.81666 11.8754 1.66666 11.667 1.66666H8.33369C8.12535 1.66666 7.95035 1.81666 7.92535 2.01666L7.6493 3.9418C7.62414 4.11725 7.50721 4.26472 7.34696 4.34043C7.02442 4.49282 6.71902 4.6747 6.42844 4.87679C6.28498 4.97656 6.10133 5.00189 5.93918 4.93677L4.12535 4.20832C3.93369 4.13332 3.71702 4.20832 3.61702 4.39166L1.95035 7.27499C1.84202 7.45832 1.89202 7.68332 2.05035 7.80832L3.58539 9.00871C3.7239 9.11702 3.794 9.29 3.77756 9.46506C3.76096 9.64183 3.75035 9.82091 3.75035 9.99999C3.75035 10.1791 3.76096 10.3581 3.77756 10.5349C3.794 10.71 3.7239 10.883 3.58539 10.9913L2.05035 12.1917C1.89202 12.3167 1.85035 12.5417 1.95035 12.725L3.61702 15.6083C3.71702 15.7917 3.94202 15.8583 4.12535 15.7917L5.93544 15.0647C6.09961 14.9988 6.28554 15.0258 6.43031 15.1275C6.72026 15.3311 7.02496 15.5094 7.34672 15.6601C7.50725 15.7352 7.62414 15.8827 7.6493 16.0582L7.92535 17.9833C7.95035 18.1833 8.12535 18.3333 8.33369 18.3333H11.667C11.8754 18.3333 12.0504 18.1833 12.0754 17.9833L12.3514 16.0582C12.3766 15.8827 12.4935 15.7353 12.6538 15.6595C12.9763 15.5072 13.2817 15.3253 13.5723 15.1232C13.7157 15.0234 13.8994 14.9981 14.0615 15.0632L15.8754 15.7917C16.067 15.8667 16.2837 15.7917 16.3837 15.6083L18.0504 12.725C18.1504 12.5417 18.1087 12.3167 17.9504 12.1917L16.4153 10.9913ZM10.0004 12.9167C8.39202 12.9167 7.08369 11.6083 7.08369 9.99999C7.08369 8.39166 8.39202 7.08332 10.0004 7.08332C11.6087 7.08332 12.917 8.39166 12.917 9.99999C12.917 11.6083 11.6087 12.9167 10.0004 12.9167Z"
+						fill="currentColor"
+					/></g
+				><defs
+					><clipPath id="clip0_3607_1064"
+						><rect width="20" height="20" fill="currentColor" /></clipPath
+					></defs
+				></svg
+			> <span class="!m-0 text-[0.75vw] font-semibold capitalize leading-[1.05vw]">settings</span>
+		</button><button
+			type="button"
+			class="bg-initial btn btn-icon w-[3.375vw] flex-col justify-center gap-[0.45vw] p-0 text-sm"
+			><svg
+				class="w-[1.25vw] text-white"
+				viewBox="0 0 18 18"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+				><path
+					d="M9.00033 0.666656C4.40033 0.666656 0.666992 4.39999 0.666992 8.99999C0.666992 13.6 4.40033 17.3333 9.00033 17.3333C13.6003 17.3333 17.3337 13.6 17.3337 8.99999C17.3337 4.39999 13.6003 0.666656 9.00033 0.666656ZM9.00033 15.6667C5.32533 15.6667 2.33366 12.675 2.33366 8.99999C2.33366 5.32499 5.32533 2.33332 9.00033 2.33332C12.6753 2.33332 15.667 5.32499 15.667 8.99999C15.667 12.675 12.6753 15.6667 9.00033 15.6667ZM8.16699 12.3333H9.83366V14H8.16699V12.3333ZM9.50866 4.03332C7.79199 3.78332 6.27533 4.84166 5.81699 6.35832C5.66699 6.84166 6.03366 7.33332 6.54199 7.33332H6.70866C7.05033 7.33332 7.32533 7.09166 7.44199 6.77499C7.70866 6.03332 8.50033 5.52499 9.35866 5.70832C10.1503 5.87499 10.7337 6.64999 10.667 7.45832C10.5837 8.57499 9.31699 8.81666 8.62533 9.85832C8.62533 9.86666 8.61699 9.86666 8.61699 9.87499C8.60866 9.89166 8.60033 9.89999 8.59199 9.91666C8.51699 10.0417 8.44199 10.1833 8.38366 10.3333C8.37533 10.3583 8.35866 10.375 8.35033 10.4C8.34199 10.4167 8.34199 10.4333 8.33366 10.4583C8.23366 10.7417 8.16699 11.0833 8.16699 11.5H9.83366C9.83366 11.15 9.92533 10.8583 10.067 10.6083C10.0837 10.5833 10.092 10.5583 10.1087 10.5333C10.1753 10.4167 10.2587 10.3083 10.342 10.2083C10.3503 10.2 10.3587 10.1833 10.367 10.175C10.4503 10.075 10.542 9.98332 10.642 9.89166C11.442 9.13332 12.5253 8.51666 12.3003 6.92499C12.1003 5.47499 10.9587 4.24999 9.50866 4.03332Z"
+					fill="white"
+				/></svg
+			> <span class="!m-0 text-[0.75vw] font-semibold capitalize leading-[1.05vw]">misc.</span>
+		</button>
+	</div>
+</div>

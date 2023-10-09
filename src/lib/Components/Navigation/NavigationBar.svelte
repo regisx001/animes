@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { AppBar } from '@skeletonlabs/skeleton';
 	import { GithubIcon, SearchTrigger, ThemeTrigger } from '$lib';
 	import Logo from './Logo.svelte';
@@ -6,13 +6,8 @@
 
 <AppBar background="bg-surface-900/5">
 	<svelte:fragment slot="lead">
-		<a class="flex justify-center items-center gap-4" href="/">
+		<a class="flex justify-center items-center px-[6px] lg:px-4 gap-4" href="/">
 			<Logo />
-			<!-- <div class="hidden md:flex flex-row gap-[0.0125rem]">
-				<span style="" class="font-bold text-2xl text-primary-500">Core</span>
-
-				<span style="" class="font-bold text-2xl text-surface-400">Anime</span>
-			</div> -->
 		</a>
 	</svelte:fragment>
 	<div class="relative flex items-center">
@@ -24,7 +19,7 @@
 		<div class="flex flex-row gap-4 items-center">
 			<ThemeTrigger />
 			<!-- <SearchTrigger /> -->
-			<GithubIcon />
+		 <GithubIcon />	
 		</div>
 	</svelte:fragment>
 </AppBar>
