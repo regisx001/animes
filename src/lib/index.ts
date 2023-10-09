@@ -1,6 +1,7 @@
 // Navigation
 export { default as NavigationBar } from "./Components/Navigation/NavigationBar.svelte"
 export { default as AppRail } from "./Components/Navigation/AppRail.svelte"
+export { default as BottomNavigation } from "./Components/Navigation/BottomNavigation.svelte"
 
 // Main
 export { default as AnimeModal } from "./Components/Main/AnimeModal.svelte"
@@ -47,8 +48,10 @@ export { default as EpisodeChangingLoader } from "./Widgets/episode/EpisodeChang
 
 
 
-export {default as RailEffect } from "./Widgets/navigtation/RailEffect.svelte" 
-export {default as RailButton } from "./Widgets/navigtation/RailButton.svelte" 
+export { default as RailEffect } from "./Widgets/navigtation/RailEffect.svelte"
+export { default as RailButton } from "./Widgets/navigtation/RailButton.svelte"
+export { default as BNavButton } from "./Widgets/navigtation/BNavButton.svelte"
+
 
 // Pages
 export { default as RecentAnimePage } from "./Components/Pages/RecentAnimePage.svelte"
