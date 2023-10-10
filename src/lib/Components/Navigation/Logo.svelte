@@ -2,7 +2,7 @@
 </script>
 
 <svg
-	class="mx-3"
+	class="mx-1 md:mx-3"
 	xmlns="http://www.w3.org/2000/svg"
 	width="30"
 	height="45"
