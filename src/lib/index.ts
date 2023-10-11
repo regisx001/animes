@@ -31,6 +31,7 @@ export { default as SearchAnimeCard } from "./Widgets/Search/SearchAnimeCard.sve
 export { default as SearchTrigger } from "./Widgets/Search/SearchTrigger.svelte"
 export { default as WaitingAnimation } from "./Widgets/Search/WaitingAnimation.svelte"
 export { default as RailSearchTrigger } from "./Widgets/Search/RailSearchTrigger.svelte"
+export { default as SearchForm } from "./Widgets/Search/SearchForm.svelte"
 
 
 export { default as ThemeTrigger } from "./Widgets/Themes/ThemeTrigger.svelte"
