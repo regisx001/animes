@@ -9,6 +9,9 @@ const config = {
 	},
 	kit: {
 		adapter: adapter(),
-	}
+		alias:{
+			"@api":"src/lib/api"
+		}
+	},	
 };
 export default config;
