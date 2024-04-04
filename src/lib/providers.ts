@@ -1,4 +1,4 @@
-import { ANIME, META } from "@consumet/extensions"
+import { ANIME, META } from "@consumet/scraper"
 
 
 export const gogo = new ANIME.Gogoanime()
