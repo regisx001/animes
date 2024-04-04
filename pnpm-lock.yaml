@@ -12,8 +12,8 @@ dependencies:
     specifier: ^5.7.0
     version: 5.7.0
   '@consumet/scraper':
-    specifier: file:../consumet.ts/consumet-scraper-1.5.6.tgz
-    version: file:../consumet.ts/consumet-scraper-1.5.6.tgz
+    specifier: file:consumet-scraper-1.5.6.tgz
+    version: file:consumet-scraper-1.5.6.tgz
   '@sveltejs/adapter-node':
     specifier: ^1.3.1
     version: 1.3.1(@sveltejs/kit@1.25.1)
@@ -3295,8 +3295,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  file:../consumet.ts/consumet-scraper-1.5.6.tgz:
-    resolution: {integrity: sha512-hskLr39YCTC1oayBlMzTGQGkjxgHPyXdWsXldWsHqN07WjDE/QJjKtgtapvNYN0VSqvY6/KWjWQ3uQ6VVtKsXw==, tarball: file:../consumet.ts/consumet-scraper-1.5.6.tgz}
+  file:consumet-scraper-1.5.6.tgz:
+    resolution: {integrity: sha512-hskLr39YCTC1oayBlMzTGQGkjxgHPyXdWsXldWsHqN07WjDE/QJjKtgtapvNYN0VSqvY6/KWjWQ3uQ6VVtKsXw==, tarball: file:consumet-scraper-1.5.6.tgz}
     name: '@consumet/scraper'
     version: 1.5.6
     dependencies:
