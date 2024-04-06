@@ -1,4 +1,30 @@
 <script lang="ts">
+	import { popup, ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
+	import type { PopupSettings } from '@skeletonlabs/skeleton';
+
+	let year: string = 'Any';
+	const yearCombobox: PopupSettings = {
+		event: 'click',
+		target: 'yearCombobox',
+		placement: 'bottom',
+		closeQuery: '.listbox-item'
+	};
+
+	let season: string = 'Any';
+	const seasonCombobox: PopupSettings = {
+		event: 'click',
+		target: 'seasonCombobox',
+		placement: 'bottom',
+		closeQuery: '.listbox-item'
+	};
+
+	let format: string = 'Any';
+	const formatCombobox: PopupSettings = {
+		event: 'click',
+		target: 'formatCombobox',
+		placement: 'bottom',
+		closeQuery: '.listbox-item'
+	};
 </script>
 
 <div id="page" class=" flex-1 overflow-x-hidden flex flex-col" style="scrollbar-gutter: auto;">
@@ -89,14 +115,15 @@
 							<div class="relative flex items-center">
 								<span
 									class="absolute cursor-pointer text-surface-50 opacity-100 duration-300 group-focus-within:opacity-0"
-									><span class="ml-3 text-base md:ml-[1vw] md:text-[0.9vw]">Any</span></span
+									><span class="ml-3 text-base md:ml-[1vw] md:text-[0.9vw]">{year}</span></span
 								>
 								<input
 									type="text"
 									class="peer w-full rounded-lg border-none bg-surface-400 py-3 text-base leading-none text-surface-50 placeholder:text-surface-50 focus:ring-0 md:w-[11vw] md:rounded-[0.5vw] md:bg-surface-400/75 md:py-[0.8vw] md:pl-[1vw] md:text-[1vw]"
+									use:popup={yearCombobox}
 								/>
-								<button class="btn absolute right-0 mr-3 w-4 p-0 md:mr-[1vw] md:w-[1vw]"
-									><svg
+								<button class="btn absolute right-0 mr-3 w-4 p-0 md:mr-[1vw] md:w-[1vw]">
+									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										class="text-surface-300"
 										fill="none"
@@ -108,8 +135,19 @@
 											stroke-width="3.5"
 											d="M6 9L12 15L18 9"
 										/></svg
-									></button
-								>
+									>
+								</button>
+							</div>
+							<div class="card w-48 shadow-xl px-2 py-3" data-popup="yearCombobox">
+								<ListBox rounded="rounded-none">
+									<ListBoxItem bind:group={year} name="medium" value="Any">Any</ListBoxItem>
+									<ListBoxItem bind:group={year} name="medium" value="2020">2020</ListBoxItem>
+									<ListBoxItem bind:group={year} name="medium" value="2021">2021</ListBoxItem>
+									<ListBoxItem bind:group={year} name="medium" value="2022">2022</ListBoxItem>
+									<ListBoxItem bind:group={year} name="medium" value="2023">2023</ListBoxItem>
+									<ListBoxItem bind:group={year} name="medium" value="2024">2024</ListBoxItem>
+								</ListBox>
+								<div class="arrow bg-surface-100-800-token" />
 							</div>
 						</div>
 						<!-- Year Filter Started -->
@@ -120,11 +158,12 @@
 							<div class="relative flex items-center">
 								<span
 									class="absolute cursor-pointer text-surface-50 opacity-100 duration-300 group-focus-within:opacity-0"
-									><span class="ml-3 text-base md:ml-[1vw] md:text-[0.9vw]">Any</span></span
+									><span class="ml-3 text-base md:ml-[1vw] md:text-[0.9vw]">{season}</span></span
 								>
 								<input
 									type="text"
 									class="peer w-full rounded-lg border-none bg-surface-400 py-3 text-base leading-none text-surface-50 placeholder:text-surface-50 focus:ring-0 md:w-[11vw] md:rounded-[0.5vw] md:bg-surface-400/75 md:py-[0.8vw] md:pl-[1vw] md:text-[1vw]"
+									use:popup={seasonCombobox}
 								/>
 								<button class="btn absolute right-0 mr-3 w-4 p-0 md:mr-[1vw] md:w-[1vw]"
 									><svg
@@ -141,6 +180,16 @@
 										/></svg
 									></button
 								>
+							</div>
+							<div class="card w-48 shadow-xl px-2 py-3" data-popup="seasonCombobox">
+								<ListBox rounded="rounded-none">
+									<ListBoxItem bind:group={season} name="medium" value="Any">Any</ListBoxItem>
+									<ListBoxItem bind:group={season} name="medium" value="Winter">Winter</ListBoxItem>
+									<ListBoxItem bind:group={season} name="medium" value="Spring">Spring</ListBoxItem>
+									<ListBoxItem bind:group={season} name="medium" value="Summer">Summer</ListBoxItem>
+									<ListBoxItem bind:group={season} name="medium" value="Autumn">Autumn</ListBoxItem>
+								</ListBox>
+								<div class="arrow bg-surface-100-800-token" />
 							</div>
 						</div>
 						<!-- Season Filter End -->
@@ -151,11 +200,12 @@
 							<div class="relative flex items-center">
 								<span
 									class="absolute cursor-pointer text-surface-50 opacity-100 duration-300 group-focus-within:opacity-0"
-									><span class="ml-3 text-base md:ml-[1vw] md:text-[0.9vw]">Any</span></span
+									><span class="ml-3 text-base md:ml-[1vw] md:text-[0.9vw]">{format}</span></span
 								>
 								<input
 									type="text"
 									class="peer w-full rounded-lg border-none bg-surface-400 py-3 text-base leading-none text-surface-50 placeholder:text-surface-50 focus:ring-0 md:w-[11vw] md:rounded-[0.5vw] md:bg-surface-400/75 md:py-[0.8vw] md:pl-[1vw] md:text-[1vw]"
+									use:popup={formatCombobox}
 								/>
 								<button class="btn absolute right-0 mr-3 w-4 p-0 md:mr-[1vw] md:w-[1vw]"
 									><svg
@@ -173,8 +223,18 @@
 									></button
 								>
 							</div>
+							<div class="card w-48 shadow-xl px-2 py-3" data-popup="formatCombobox">
+								<ListBox rounded="rounded-none">
+									<ListBoxItem bind:group={format} name="medium" value="Any">Any</ListBoxItem>
+									<ListBoxItem bind:group={format} name="medium" value="Tv">Tv</ListBoxItem>
+									<ListBoxItem bind:group={format} name="medium" value="Movie">Movie</ListBoxItem>
+									<ListBoxItem bind:group={format} name="medium" value="Ova">Ova</ListBoxItem>
+									<ListBoxItem bind:group={format} name="medium" value="Ona">Ona</ListBoxItem>
+								</ListBox>
+								<div class="arrow bg-surface-100-800-token" />
+							</div>
 						</div>
-						<!-- Season Filter End -->
+						<!-- Genre Filter End -->
 					</div>
 
 					<more-filter-option>
