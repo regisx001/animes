@@ -21,7 +21,7 @@ export { default as AnimeModal } from "./Components/Main/AnimeModal.svelte"
 
 
 // Providers
-export { gogo, animlist } from "./providers"
+export { gogo, animlist, zoro, moviesHd } from "./providers"
 
 // Stores
 export { searchStore, showSearchModalStore, themeStore, EpisodeLightStore } from "./stores"

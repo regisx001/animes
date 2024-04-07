@@ -32,14 +32,15 @@
 				>
 				<anime_info
 					class="flex items-center gap-2 text-xs leading-none text-surface-50 md:gap-[0.5vw] md:text-[0.8vw]"
-					><genre>Action</genre>
+				>
+					<!-- <genre>Action</genre> -->
 					<svg
 						class="w-1 opacity-75 md:w-[0.25vw]"
 						viewBox="0 0 10 10"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
 						><circle cx="5" cy="5" r="5" fill="currentColor" /></svg
-					> <episodes_count> eps {anime.episodeNumber}</episodes_count></anime_info
+					> <episodes_count> Episode {anime.episodeNumber}</episodes_count></anime_info
 				>
 			</div></anime-info
 		>
