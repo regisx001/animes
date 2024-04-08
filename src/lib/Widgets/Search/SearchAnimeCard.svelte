@@ -10,7 +10,7 @@
 </pre> -->
 
 <section
-	class="max-h-[520px] lg:max-h-[700px] mt-5 grid grid-cols-3 gap-3 p-6 md:mt-[1.25vw] md:grid-cols-6 md:gap-5 overflow-y-scroll"
+	class="max-h-[520px] lg:max-h-[700px] mt-5 grid grid-cols-3 gap-3 p-6 md:mt-[1.25vw] md:grid-cols-5 md:gap-5 overflow-y-scroll"
 >
 	{#each data.results as anime}
 		<!-- content here -->
@@ -22,11 +22,9 @@
 			href="/anime?id={anime.id}"
 			class="relative col-span-1 flex flex-col gap-2 md:gap-[0.5vw]"
 			><div class="relative" aria-expanded="false">
-				<div
-					class="h-60 w-full rounded-md object-cover object-center md:h-[20vw] md:rounded-[0.35vw]"
-				>
+				<div class="h-60 w-full rounded-md object-cover object-center md:h-80 md:rounded-[0.35vw]">
 					<img
-						class="h-60 w-full rounded-md object-cover object-center md:h-[20vw] md:rounded-[0.35vw]"
+						class="h-60 w-full rounded-md object-cover object-center md:h-80 md:rounded-[0.35vw]"
 						src={anime.image}
 						alt="The girl I like to forgot her name"
 						style=""
