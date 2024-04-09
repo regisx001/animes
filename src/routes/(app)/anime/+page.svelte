@@ -1,17 +1,25 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { gogo } from '$lib';
+	import { gogo, animlist } from '$lib';
 	import { onMount } from 'svelte';
 
 	let id: string | null;
 	$: anime = {};
-	$: ready = false;
 	// @ts-ignore
 	$: genres = anime?.genres || [];
+
+	$: anime_meta = {};
+
+	$: ready = false;
 
 	onMount(async () => {
 		page.subscribe(({ url }) => {
 			id = url.searchParams.get('id');
+		});
+
+		// @ts-ignore
+		extractResult(id).then((data) => {
+			anime_meta = data;
 		});
 
 		// @ts-ignore
@@ -21,34 +29,75 @@
 		});
 	});
 
+	async function extractAnilistId(gogoId: string) {
+		const result1 = (await animlist.search(gogoId))?.results[0].id;
+		return result1;
+	}
+
+	async function extractResult(gogoId: string) {
+		const result1 = (await animlist.search(gogoId))?.results[0];
+		return result1;
+	}
+
 	async function fetchAnimeInfo(id: string) {
 		ready = false;
 		// @ts-ignore
-		return await gogo.fetchAnimeInfo(id);
+		return {
+			anime: await gogo.fetchAnimeInfo(id),
+			meta: await extractResult(id)
+		};
 	}
+
 	$: {
-		// @ts-ignore
-		fetchAnimeInfo(id).then((data) => {
-			anime = data;
+		fetchAnimeInfo(String(id)).then((data) => {
+			anime = data.anime;
+			anime_meta = data.meta;
 			ready = true;
 		});
+
+		// fetchAniListInfo(anilistId).then((data) => {
+		// 	anime_meta = data;
+		// });
 	}
 </script>
 
 {#if ready}
 	<section class="snap-y snap-mandatory h-full overflow-scroll">
+		<!-- <section class="h-screen"> -->
 		<section class="h-full snap-start flex flex-col justify-between">
 			<section class="flex flex-row justify-between pt-12 mx-[2.5%]">
 				<section class="flex flex-col gap-y-14 items-center w-1/4">
-					<img
-						class="shadow-xl h-96 w-64 rounded-2xl"
-						src={anime.image}
-						alt="anime manga japan {anime.title}"
-					/>
+					{#if anime_meta?.image}
+						<img
+							class="shadow-xl h-96 w-64 rounded-2xl"
+							src={anime_meta?.image}
+							alt="anime manga japan {anime?.title}"
+						/>
+					{:else}
+						<img
+							class="shadow-xl h-96 w-64 rounded-2xl"
+							src={anime.image}
+							alt="anime manga japan {anime.title}"
+						/>
+					{/if}
 
 					<div class="flex gap-y-4 font-semibold w-64 items-start flex-col">
-						<span> Score: <span class="ml-1 text-warning-400"> 86 </span> </span>
-						<span> Status: <span class="ml-1 text-warning-400">Watching</span> </span>
+						{#if anime_meta?.rating}
+							<span>
+								Rating: <span class="ml-1 text-warning-400"> {anime_meta?.rating} </span>
+							</span>
+						{:else}
+							<span> Score: <span class="ml-1 text-warning-400"> 86 </span> </span>
+						{/if}
+
+						{#if anime_meta?.popularity}
+							<span>
+								Popularity: <span class="ml-1 text-warning-400"> {anime_meta?.popularity} </span>
+							</span>
+						{:else}
+							<span> Status: <span class="ml-1 text-warning-400">Watching</span> </span>
+						{/if}
+
 						<span> Episode: <span class="ml-1 text-warning-400">797/?</span> </span>
 						<span> Your Score: <span class="ml-1 text-warning-400">Not rated</span> </span>
 					</div>
@@ -58,8 +107,15 @@
 					<h1 class="h1 font-bold leading-[60px]">
 						{anime?.title}
 					</h1>
-					<!-- <div>{@html anime.otherName}</div> -->
-					<div class="flex flex-row gap-4 mt-10">
+					{#if anime_meta?.title}
+						<div class="flex flex-row gap-4 mt-2 opacity-70 text-lg">
+							<div>{anime_meta?.title?.romaji}</div>
+							<div>{anime_meta?.title?.english}</div>
+							<div>{anime_meta?.title?.native}</div>
+							<div>{anime_meta?.title?.userPreferred}</div>
+						</div>
+					{/if}
+					<div class="flex flex-row gap-4 mt-8">
 						{#each genres as genre}
 							<span
 								class="chip p-3 rounded-lg leading-5 text-black bg-warning-400 text-base font-medium"
@@ -88,6 +144,7 @@
 					</div>
 
 					<div class="mt-5 text-lg text-justify opacity-85">
+						<!-- Improve Later -->
 						{@html anime?.description}
 					</div>
 
@@ -123,6 +180,7 @@
 						</button>
 					</div>
 				</section>
+
 				<section class="flex flex-col items-center gap-10 w-1/4">
 					<button class="btn mt-10 h-14 leading-6 text-black rounded-xl bg-surface-500 font-bold">
 						<svg
@@ -148,12 +206,24 @@
 							<span class="ml-1 text-warning-400"> 24 min </span>
 						</div>
 						<div class="flex flex-col">
-							<span> Start Date </span>
-							<span class="ml-1 text-warning-400"> Oct 20, 1999 </span>
+							<span> Release Date </span>
+							<span class="ml-1 text-warning-400">
+								{#if anime_meta?.releaseDate}
+									{anime_meta?.releaseDate}
+								{:else}
+									{anime?.releaseDate}
+								{/if}
+							</span>
 						</div>
 						<div class="flex flex-col">
-							<span> End Date </span>
-							<span class="ml-1 text-warning-400"> ? </span>
+							<span> Current Episode Count </span>
+							<span class="ml-1 text-warning-400">
+								{#if anime_meta?.currentEpisodeCount}
+									{anime_meta?.currentEpisodeCount}
+								{:else}
+									?
+								{/if}
+							</span>
 						</div>
 						<div class="flex flex-col">
 							<span> Source </span>
@@ -181,7 +251,7 @@
 				</section>
 			</section>
 			<button
-				class="btn animate-bounce opacity-85 flex gap-4 w-full py-10 justify-center items-center"
+				class="btn animate-bounce opacity-85 flex gap-4 pb-20 w-full justify-center items-center"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
