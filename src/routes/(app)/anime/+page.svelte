@@ -62,8 +62,8 @@
 </script>
 
 {#if ready}
-	<section class="snap-y snap-mandatory h-full overflow-scroll">
-		<!-- <section class="h-screen"> -->
+	<!-- <section class="snap-y snap-mandatory h-full overflow-scroll"> -->
+	<section class="h-screen">
 		<section class="h-full snap-start flex flex-col justify-between">
 			<section class="flex flex-row justify-between pt-12 mx-[2.5%]">
 				<section class="flex flex-col gap-y-14 items-center w-1/4">
@@ -277,6 +277,12 @@
 				<h1 class=" h1 font-bold">EPISODES</h1>
 				<div class="w-full rounded-xl mt-2 mr-24 ml-10 h-3 bg-white" />
 			</header>
+
+			<!-- <img class="p-10 cover" src={anime_meta?.cover} alt="" /> -->
+
+			<!-- <pre class="pre">
+				{JSON.stringify(anime_meta, null, 2)}
+			</pre> -->
 		</section>
 	</section>
 {:else}
@@ -290,3 +296,6 @@
 <pre class="pre">
 	{JSON.stringify(anime, null, 2)}
 </pre> -->
+
+<style>
+</style>

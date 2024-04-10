@@ -21,7 +21,9 @@
 	</div>
 	<svelte:fragment slot="trail">
 		<div class="flex flex-row gap-4 items-center">
-			<ThemeTrigger />
+			<!-- Theme changed to settings Route -->
+			<!-- <ThemeTrigger /> -->
+			<!--  -->
 			<!-- <SearchTrigger /> -->
 			<!-- <GithubIcon /> -->
 		</div>
