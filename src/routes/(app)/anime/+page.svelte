@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 	import { gogo, animlist } from '$lib';
 	import { onMount } from 'svelte';
@@ -7,6 +8,7 @@
 	$: anime = {};
 	// @ts-ignore
 	$: genres = anime?.genres || [];
+	$: episodes = anime?.episodes || [];
 
 	$: anime_meta = {};
 
@@ -54,15 +56,10 @@
 			anime_meta = data.meta;
 			ready = true;
 		});
-
-		// fetchAniListInfo(anilistId).then((data) => {
-		// 	anime_meta = data;
-		// });
 	}
 </script>
 
 {#if ready}
-	<!-- <section class="snap-y snap-mandatory h-full overflow-scroll"> -->
 	<section class="h-screen">
 		<section class="h-full snap-start flex flex-col justify-between">
 			<section class="flex flex-row justify-between pt-12 mx-[2.5%]">
@@ -278,10 +275,20 @@
 				<div class="w-full rounded-xl mt-2 mr-24 ml-10 h-3 bg-white" />
 			</header>
 
+			<section class="mx-[5%] mt-16 grid grid-cols-8">
+				{#each episodes as episode}
+					<a
+						href="{base}/episodes?id={episode?.id}"
+						class="m-4 bg-white text-black grid place-content-center text-xl font-bold rounded-xl shadow-xl h-14 w-28"
+					>
+						{episode?.number}
+					</a>
+				{/each}
+			</section>
 			<!-- <img class="p-10 cover" src={anime_meta?.cover} alt="" /> -->
 
 			<!-- <pre class="pre">
-				{JSON.stringify(anime_meta, null, 2)}
+				{JSON.stringify(episodes, null, 2)}
 			</pre> -->
 		</section>
 	</section>
