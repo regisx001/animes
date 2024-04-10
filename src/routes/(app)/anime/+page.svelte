@@ -61,8 +61,15 @@
 
 {#if ready}
 	<section class="h-screen">
-		<section class="h-full snap-start flex flex-col justify-between">
-			<section class="flex flex-row justify-between pt-12 mx-[2.5%]">
+		<section class="relative z-0 h-full snap-start flex flex-col justify-between">
+			<div
+				class="absolute bg-center bg-cover bg-no-repeat h-[90vh] w-full"
+				style="mask-image: radial-gradient(at top right, rgba(0,0,0,1.0) ,transparent 40%),
+				radial-gradient(at top right, rgba(0,0,0,1.0),transparent 60%);
+			background-image: url({anime_meta?.cover});
+			"
+			/>
+			<section class=" z-30 flex flex-row justify-between pt-12 mx-[2.5%]">
 				<section class="flex flex-col gap-y-14 items-center w-1/4">
 					{#if anime_meta?.image}
 						<img
@@ -140,7 +147,9 @@
 						</span>
 					</div>
 
-					<div class="mt-5 text-lg text-justify opacity-85">
+					<div
+						class="mt-2 p-4 text-lg card rounded-2xl variant-glass-surface text-[#C4C4C4] text-justify opacity-85"
+					>
 						<!-- Improve Later -->
 						{@html anime?.description}
 					</div>
