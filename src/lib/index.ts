@@ -59,6 +59,8 @@ export { default as EpisodeOptions } from "./Widgets/episode/EpisodeOptions.svel
 export { default as EpisodeChangingLoader } from "./Widgets/episode/EpisodeChangingLoader.svelte"
 
 
+export { default as CompactAnimeCard } from "./Widgets/Cards/CompactAnimeCard.svelte"
+
 
 export { default as RailEffect } from "./Widgets/navigtation/RailEffect.svelte"
 export { default as RailButton } from "./Widgets/navigtation/RailButton.svelte"

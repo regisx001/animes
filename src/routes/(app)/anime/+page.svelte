@@ -113,50 +113,57 @@
 						{anime?.title}
 					</h1>
 					{#if anime_meta?.title}
-						<div class="flex flex-row gap-4 mt-2 opacity-70 text-lg">
+						<div
+							class="flex flex-row gap-2 items-center mt-2 font-semibold text-[#A5A5A5] opacity-95 text-lg"
+						>
 							<div>{anime_meta?.title?.romaji}</div>
+							<div class="w-[5px] h-[5px] bg-[#A5A5A5]" />
+
 							<div>{anime_meta?.title?.english}</div>
+							<div class="w-[5px] h-[5px] bg-[#A5A5A5]" />
+
 							<div>{anime_meta?.title?.native}</div>
+							<div class="w-[5px] h-[5px] bg-[#A5A5A5]" />
+
 							<div>{anime_meta?.title?.userPreferred}</div>
 						</div>
 					{/if}
 					<div class="flex flex-row gap-4 mt-8">
 						{#each genres as genre}
 							<span
-								class="chip p-3 rounded-lg leading-5 text-black bg-warning-400 text-base font-medium"
+								class="chip p-3 rounded-lg leading-[18px] text-[#070519] bg-warning-500 text-base font-semibold"
 							>
 								{genre}
 							</span>
 						{/each}
 					</div>
 
-					<div class="font-semibold flex flex-row gap-4 mt-5">
+					<div class="font-semibold leading-[18px] items-center flex flex-row gap-2 mt-5">
 						<span>
 							{anime?.type}
 						</span>
-
+						<div class="w-[5px] h-[5px] bg-white" />
 						<span>
 							{anime?.totalEpisodes}+ eps
 						</span>
+						<div class="w-[5px] h-[5px] bg-white" />
 
 						<span>
 							{anime?.status}
 						</span>
-
+						<div class="w-[5px] h-[5px] bg-white" />
 						<span>
 							{anime?.releaseDate}
 						</span>
 					</div>
 
-					<div
-						class="mt-2 p-4 text-lg card rounded-2xl variant-glass-surface text-[#C4C4C4] text-justify opacity-85"
-					>
+					<div class="mt-8 text-lg font-medium leading-6 text-[#C4C4C4]">
 						<!-- Improve Later -->
 						{@html anime?.description}
 					</div>
 
 					<div class="flex mt-8 flex-row justify-between gap-4">
-						<button class="btn h-14 leading-6 text-black rounded-xl bg-warning-400 font-bold">
+						<button class="btn h-14 leading-6 text-black rounded-xl bg-warning-500 font-bold">
 							<svg
 								class="w-5 mr-2"
 								viewBox="0 0 14 14"
@@ -170,7 +177,7 @@
 							<span class="opacity-80"> Start Watching | Episode 01 </span>
 						</button>
 
-						<button class="btn h-14 leading-6 text-black rounded-xl bg-warning-400 font-bold">
+						<button class="btn h-14 leading-6 text-black rounded-xl bg-warning-500 font-bold">
 							<svg
 								class="w-5 mr-2"
 								viewBox="0 0 14 14"
@@ -189,7 +196,9 @@
 				</section>
 
 				<section class="flex flex-col items-center gap-10 w-1/4">
-					<button class="btn mt-10 h-14 leading-6 text-black rounded-xl bg-surface-500 font-bold">
+					<button
+						class="btn mt-10 w-56 h-20 leading-6 text-white rounded-xl bg-surface-500 font-bold"
+					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							width="24"
@@ -205,8 +214,9 @@
 						>
 						<span class="opacity-80"> Trailer/PV </span>
 					</button>
+
 					<div
-						class="card p-6 gap-4 variant-glass-surface flex flex-col w-56 rounded-xl font-semibold"
+						class="card p-6 gap-4 variant-filled-surface flex flex-col w-56 rounded-xl font-semibold"
 					>
 						<div class="flex flex-col">
 							<span> Episode Duration </span>

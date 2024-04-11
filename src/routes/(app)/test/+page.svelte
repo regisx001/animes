@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { animlist, gogo, mallist } from '$lib';
+	import { animlist, gogo, mallist, CompactAnimeCard } from '$lib';
 	import { onMount } from 'svelte';
 
 	$: anime = {};
+	$: dummy = {};
+	$: results = anime.results || [];
 	async function extractAnilistId(gogoId: string) {
 		const anilistId = (await animlist.search(gogoId))?.results[0]?.id;
 		return anilistId;
@@ -13,14 +15,18 @@
 	}
 
 	onMount(async () => {
-		const id = await extractMallistId('sousou-no-frieren');
-
-		// animlist.fetchAnilistInfoById(id).then((data) => {
-		// 	anime = data;
-		// });
+		gogo.search('one').then((data) => {
+			anime = data;
+		});
 	});
 </script>
 
+<section class="mt-5 grid grid-cols-2 gap-3 md:mt-10 md:grid-cols-3 md:gap-5">
+	{#each results as anime}
+		<CompactAnimeCard {anime} />
+	{/each}
+</section>
+
 <pre class="pre">
-	{JSON.stringify(anime, null, 2)}
+	{JSON.stringify(dummy, null, 2)}
 </pre>
