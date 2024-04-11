@@ -11,7 +11,6 @@
 		searchStore.subscribe((keywords) => {
 			if (keywords === 'no-data') {
 			} else {
-				// @ts-ignore
 				searchKeyWords = keywords;
 			}
 		});
@@ -24,7 +23,7 @@
 			setTimeout(async () => {
 				const animes = await gogo.search(searchKeyWords);
 				resolve(animes);
-			}, 500);
+			}, 800);
 		}).then((val) => {
 			waiting = false;
 			// @ts-ignore

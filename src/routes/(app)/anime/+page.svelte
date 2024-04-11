@@ -67,7 +67,7 @@
 				class="absolute bg-center opacity-70 bg-cover bg-no-repeat h-[90vh] w-full"
 				style="mask-image: radial-gradient(at top right, rgba(0,0,0,1.0) ,transparent 40%),
 				radial-gradient(at top right, rgba(0,0,0,1.0),transparent 70%);
-			background-image: url({anime_meta?.cover});
+				background-image: url({anime_meta?.cover});
 			"
 			/>
 			<section class=" z-30 flex flex-row justify-between pt-12 mx-[2.5%]">
