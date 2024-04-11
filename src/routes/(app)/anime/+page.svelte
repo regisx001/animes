@@ -8,6 +8,7 @@
 	$: anime = {};
 	// @ts-ignore
 	$: genres = anime?.genres || [];
+	// @ts-ignore
 	$: episodes = anime?.episodes || [];
 
 	$: anime_meta = {};
@@ -63,9 +64,9 @@
 	<section class="h-screen">
 		<section class="relative z-0 h-full snap-start flex flex-col justify-between">
 			<div
-				class="absolute bg-center bg-cover bg-no-repeat h-[90vh] w-full"
+				class="absolute bg-center opacity-70 bg-cover bg-no-repeat h-[90vh] w-full"
 				style="mask-image: radial-gradient(at top right, rgba(0,0,0,1.0) ,transparent 40%),
-				radial-gradient(at top right, rgba(0,0,0,1.0),transparent 60%);
+				radial-gradient(at top right, rgba(0,0,0,1.0),transparent 70%);
 			background-image: url({anime_meta?.cover});
 			"
 			/>

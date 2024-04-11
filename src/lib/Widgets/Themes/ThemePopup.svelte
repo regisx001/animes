@@ -3,6 +3,7 @@
 	import { themeStore, changeTheme } from '$lib';
 
 	let themes = [
+		{ name: 'Kokoro', value: 'kokoro', icon: '⛩️' },
 		{ name: 'Wintry', value: 'wintry', icon: '🌨️' },
 		{ name: 'Modern', value: 'modern', icon: '🤖' },
 		{ name: 'Crimson', value: 'crimson', icon: '⭕' }
