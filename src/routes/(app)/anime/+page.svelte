@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import { page } from '$app/stores';
-	import { gogo, animlist, Loader } from '$lib';
+	import { gogo, animlist } from '$lib';
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 
 	let id: string | null;
 	$: anime = {};
@@ -27,8 +28,10 @@
 
 		// @ts-ignore
 		gogo.fetchAnimeInfo(id).then((data) => {
-			anime = data;
-			ready = true;
+			setTimeout(() => {
+				anime = data;
+				ready = true;
+			}, 800);
 		});
 	});
 
@@ -53,9 +56,11 @@
 
 	$: {
 		fetchAnimeInfo(String(id)).then((data) => {
-			anime = data.anime;
-			anime_meta = data.meta;
-			ready = true;
+			setTimeout(() => {
+				anime = data.anime;
+				anime_meta = data.meta;
+				ready = true;
+			}, 800);
 		});
 	}
 </script>
@@ -64,7 +69,8 @@
 	<section class="h-screen">
 		<section class="relative z-0 h-full snap-start flex flex-col justify-between">
 			<div
-				class="absolute gradient inset-0 bg-gradient-to-t from-surface-900 to-surface-900/50 bg-center opacity-70 bg-cover bg-no-repeat h-[90vh] w-full"
+				in:fade={{ delay: 200, duration: 800 }}
+				class="absolute bg-center opacity-70 bg-cover bg-no-repeat h-[90vh] w-full"
 				style="mask-image: radial-gradient(at top right, rgba(0,0,0,1.0) ,transparent 40%),
 				radial-gradient(at top right, rgba(0,0,0,1.0),transparent 70%);
 				background-image: url({anime_meta?.cover});
@@ -73,7 +79,7 @@
 
 			<!-- 			
 				Old Cover	
-			<div class="absolute hidden h-full w-full select-none rounded-tl-[1.5vw] object-cover object-center md:flex">
+			<div in:fade={{ delay: 200, duration: 800 }} class="absolute hidden h-full w-full select-none rounded-tl-[1.5vw] object-cover object-center md:flex">
 				<img class="absolute hidden h-full w-full select-none rounded-tl-[1.5vw] object-cover object-center md:flex" src="{anime_meta?.cover}" alt="" style="" loading="lazy">
 			</div>
 			<div class="gradient absolute inset-0 bg-gradient-to-t from-surface-900 to-surface-900/50">
@@ -323,8 +329,60 @@
 		</section>
 	</section>
 {:else}
-	<section class="w-full h-full grid place-items-center">
-		<Loader />
+	<section class="h-screen">
+		<section class="relative z-0 h-full snap-start flex flex-col justify-between">
+			<section class=" z-30 flex flex-row justify-between pt-12 mx-[2.5%]">
+				<section class="flex flex-col gap-y-14 items-center w-1/4">
+					<div class="h-96 w-64 rounded-xl shadow-2xl bg-surface-400 animate-pulse" />
+					<div class="flex gap-y-4 font-semibold w-64 items-start flex-col">
+						<div class="bg-surface-400 animate-pulse h-6 rounded-2xl w-1/3" />
+						<div class="bg-surface-400 animate-pulse h-6 rounded-2xl w-2/3" />
+						<div class="bg-surface-400 animate-pulse h-6 rounded-2xl w-1/2" />
+						<div class="bg-surface-400 animate-pulse h-6 rounded-2xl w-4/5" />
+					</div>
+				</section>
+
+				<section class="w-1/2">
+					<div class="bg-surface-400 animate-pulse h-10 rounded-2xl w-4/5" />
+
+					<div
+						class="flex flex-row gap-2 items-center mt-3 font-semibold text-[#A5A5A5] opacity-95 text-lg"
+					>
+						<div class="bg-surface-400 animate-pulse h-5 rounded-2xl w-1/6" />
+
+						<div class="w-[5px] h-[5px] bg-[#A5A5A5]" />
+						<div class="bg-surface-400 animate-pulse h-5 rounded-2xl w-1/6" />
+
+						<div class="w-[5px] h-[5px] bg-[#A5A5A5]" />
+						<div class="bg-surface-400 animate-pulse h-5 rounded-2xl w-1/6" />
+
+						<div class="w-[5px] h-[5px] bg-[#A5A5A5]" />
+						<div class="bg-surface-400 animate-pulse h-5 rounded-2xl w-1/6" />
+					</div>
+
+					<div class="flex flex-row gap-4 mt-8">
+						{#each Array(4) as item}
+							<div class="bg-surface-400 animate-pulse h-10 rounded-2xl w-[14%]" />
+						{/each}
+					</div>
+
+					<div class="bg-surface-400 animate-pulse h-4 mt-2 rounded-2xl w-2/5" />
+
+					<div class="mt-8 h-1/2 bg-surface-400 animate-pulse rounded-2xl" />
+
+					<div class="flex mt-8 flex-row justify-between gap-4">
+						<button class="btn w-1/3 h-14 rounded-xl bg-surface-400 animate-pulse" />
+
+						<button class="btn w-1/3 h-14 rounded-xl bg-surface-400 animate-pulse" />
+					</div>
+				</section>
+
+				<section class="flex flex-col items-center gap-10 w-1/4">
+					<button class="btn mt-10 w-56 h-20 animate-pulse bg-surface-400" />
+					<div class=" p-6 h-80 animate-pulse gap-4 bg-surface-400 w-56 rounded-xl" />
+				</section>
+			</section>
+		</section>
 	</section>
 {/if}
 

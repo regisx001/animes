@@ -21,7 +21,7 @@
 			setTimeout(() => {
 				recentEpisodes = val;
 				is_ready = true;
-			}, 2000);
+			}, 1200);
 		});
 	});
 </script>
