@@ -10,7 +10,7 @@
 			<img
 				class="h-60 w-full rounded-md object-cover object-center md:h-[20vw] md:rounded-[0.35vw]"
 				src={anime.image}
-				alt="The girl I like to forgot her name"
+				alt={anime?.title}
 				style=""
 				loading="lazy"
 			/>

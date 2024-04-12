@@ -67,6 +67,8 @@ export { default as RailButton } from "./Widgets/navigtation/RailButton.svelte"
 export { default as BNavButton } from "./Widgets/navigtation/BNavButton.svelte"
 
 
+export { default as Loader } from "./Widgets/Loader.svelte"
+
 // Pages
 export { default as RecentAnimePage } from "./Components/Pages/RecentAnimePage.svelte"
 

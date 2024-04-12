@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { gogo, RecentAnimePage, Carousel } from '$lib';
+	import { gogo, Loader, RecentAnimeCard } from '$lib';
+	import { error } from '@sveltejs/kit';
 	import { inview } from 'svelte-inview';
 	import { onMount } from 'svelte';
 
@@ -9,7 +10,7 @@
 		return data;
 	}
 	$: curr_page = 1;
-	$: data = {};
+	$: recentEpisodes = {};
 	$: is_ready = false;
 	$: loading_more = false;
 	onMount(async () => {
@@ -18,20 +19,10 @@
 		});
 
 		await fetchAnimes(curr_page).then((val) => {
-			data = val;
+			recentEpisodes = val;
 			is_ready = true;
 		});
 	});
-
-	$: {
-		new Promise(async (resolve, reject) => {
-			const animes = fetchAnimes(curr_page);
-			resolve(animes);
-		}).then((val) => {
-			// @ts-ignore
-			data = val;
-		});
-	}
 </script>
 
 <svelte:head>
@@ -39,25 +30,32 @@
 </svelte:head>
 
 {#if is_ready}
-	<Carousel />
-	<RecentAnimePage {data} />
-	<!-- <div
-		class="w-full h-5 bg-red-600"
-		use:inview
-		on:inview_enter={() => {
-			loading_more = true;
-			fetchAnimes(curr_page + 1).then(({ results }) => {
-				console.log('Loading Page ' + curr_page);
-				// @ts-ignore
-				data.results = [...data.results, ...results];
-				curr_page++;
-				loading_more = false;
-			});
-		}}
-	/> -->
+	<section
+		class="mx-[2.5%] mt-5 relative grid grid-cols-3 gap-3 md:mt-[1.25vw] md:grid-cols-6 md:gap-[1.5vw]"
+	>
+		{#each recentEpisodes?.results as episodes}
+			<RecentAnimeCard anime={episodes} />
+		{/each}
+		<div
+			class="absolute top-[65%] left-0 w-full h-5"
+			use:inview
+			on:inview_enter={() => {
+				loading_more = true;
+				fetchAnimes(curr_page + 1).then((data) => {
+					loading_more = true;
+					// @ts-ignore
+					recentEpisodes.results = [...recentEpisodes.results, ...data.results];
+					curr_page++;
+					setTimeout(() => {
+						loading_more = false;
+					}, 1000);
+				});
+			}}
+		/>
+	</section>
 
 	{#if loading_more}
-		<div class="font-bold absolute top-1/2 left-1/2 text-2xl h-10 bg-red-600">Loading Kbira</div>
+		<Loader />
 	{/if}
 {/if}
 
