@@ -72,7 +72,10 @@ export { default as Loader } from "./Widgets/Loader.svelte"
 // Pages
 export { default as RecentAnimePage } from "./Components/Pages/RecentAnimePage.svelte"
 
-
+// Errors
+export { default as Page400 } from "./Widgets/Errors/400.svelte"
+export { default as Page403 } from "./Widgets/Errors/403.svelte"
+export { default as Page404 } from "./Widgets/Errors/404.svelte"
 
 
 // Utils
