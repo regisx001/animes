@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import { page } from '$app/stores';
-	import { gogo, animlist } from '$lib';
+	import { gogo, animlist, Loader } from '$lib';
 	import { onMount } from 'svelte';
 
 	let id: string | null;
@@ -64,12 +64,22 @@
 	<section class="h-screen">
 		<section class="relative z-0 h-full snap-start flex flex-col justify-between">
 			<div
-				class="absolute bg-center opacity-70 bg-cover bg-no-repeat h-[90vh] w-full"
+				class="absolute gradient inset-0 bg-gradient-to-t from-surface-900 to-surface-900/50 bg-center opacity-70 bg-cover bg-no-repeat h-[90vh] w-full"
 				style="mask-image: radial-gradient(at top right, rgba(0,0,0,1.0) ,transparent 40%),
 				radial-gradient(at top right, rgba(0,0,0,1.0),transparent 70%);
 				background-image: url({anime_meta?.cover});
 			"
 			/>
+
+			<!-- 			
+				Old Cover	
+			<div class="absolute hidden h-full w-full select-none rounded-tl-[1.5vw] object-cover object-center md:flex">
+				<img class="absolute hidden h-full w-full select-none rounded-tl-[1.5vw] object-cover object-center md:flex" src="{anime_meta?.cover}" alt="" style="" loading="lazy">
+			</div>
+			<div class="gradient absolute inset-0 bg-gradient-to-t from-surface-900 to-surface-900/50">
+			</div>
+			 -->
+
 			<section class=" z-30 flex flex-row justify-between pt-12 mx-[2.5%]">
 				<section class="flex flex-col gap-y-14 items-center w-1/4">
 					{#if anime_meta?.image}
@@ -313,7 +323,9 @@
 		</section>
 	</section>
 {:else}
-	Loading
+	<section class="w-full h-full grid place-items-center">
+		<Loader />
+	</section>
 {/if}
 
 <!-- <pre class="pre">
