@@ -3,6 +3,7 @@
 	import { gogo, Loader, RecentAnimeCard, RecentAnimeSkeleton } from '$lib';
 	import { inview } from 'svelte-inview';
 	import { onMount } from 'svelte';
+	import { fly } from 'svelte/transition';
 
 	async function fetchAnimes(page: number = 1) {
 		const data = await gogo.fetchRecentEpisodes(page);
@@ -21,7 +22,7 @@
 			setTimeout(() => {
 				recentEpisodes = val;
 				is_ready = true;
-			}, 1200);
+			}, 1000);
 		});
 	});
 </script>
@@ -37,6 +38,7 @@
 		{#each recentEpisodes?.results as episodes}
 			<RecentAnimeCard anime={episodes} />
 		{/each}
+
 		<div
 			class="absolute top-[65%] left-0 w-full h-5"
 			use:inview
@@ -62,7 +64,7 @@
 	<section
 		class="mx-[2.5%] mt-5 relative grid grid-cols-3 gap-3 md:mt-[1.25vw] md:grid-cols-6 md:gap-[1.5vw]"
 	>
-		{#each Array(15) as episodes}
+		{#each Array(20) as _, i}
 			<RecentAnimeSkeleton />
 		{/each}
 	</section>

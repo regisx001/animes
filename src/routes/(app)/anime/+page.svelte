@@ -77,15 +77,6 @@
 			"
 			/>
 
-			<!-- 			
-				Old Cover	
-			<div in:fade={{ delay: 200, duration: 800 }} class="absolute hidden h-full w-full select-none rounded-tl-[1.5vw] object-cover object-center md:flex">
-				<img class="absolute hidden h-full w-full select-none rounded-tl-[1.5vw] object-cover object-center md:flex" src="{anime_meta?.cover}" alt="" style="" loading="lazy">
-			</div>
-			<div class="gradient absolute inset-0 bg-gradient-to-t from-surface-900 to-surface-900/50">
-			</div>
-			 -->
-
 			<section class=" z-30 flex flex-row justify-between pt-12 mx-[2.5%]">
 				<section class="flex flex-col gap-y-14 items-center w-1/4">
 					{#if anime_meta?.image}

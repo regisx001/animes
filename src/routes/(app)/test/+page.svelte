@@ -1,22 +1,10 @@
 <script lang="ts">
-	import { animlist, Page400 } from '$lib';
+	import { RecentAnimeSkeleton } from '$lib';
 	import { onMount } from 'svelte';
+	import { fade, fly } from 'svelte/transition';
 
 	$: anime = {};
-	$: results = anime.results || [];
-	async function extractAnilistId(gogoId: string) {
-		const anilistId = (await animlist.search(gogoId))?.results[0]?.id;
-		return anilistId;
-	}
-	async function extractMallistId(gogoId: string) {
-		const anilistId = (await animlist.search(gogoId))?.results[0]?.malId;
-		return anilistId;
-	}
+	let animate = false;
 
 	onMount(async () => {});
 </script>
-
-<Page400 />
-<!-- <pre class="pre">
-	{JSON.stringify(dummy, null, 2)}
-</pre> -->
