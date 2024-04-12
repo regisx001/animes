@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { gogo, Loader, RecentAnimeCard } from '$lib';
-	import { error } from '@sveltejs/kit';
 	import { inview } from 'svelte-inview';
 	import { onMount } from 'svelte';
 
