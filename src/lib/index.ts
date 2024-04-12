@@ -32,7 +32,6 @@ export { searchStore, showSearchModalStore, themeStore, EpisodeLightStore } from
 
 // Widgets
 export { default as GithubIcon } from "./Widgets/GithubIcon.svelte"
-export { default as RecentAnimeCard } from "./Widgets/RecentAnimeCard.svelte"
 export { default as Carousel } from "./Widgets/Carousel.svelte"
 export { default as LatestEpisodesSideBar } from "./Widgets/LatestEpisodesSideBar.svelte"
 
@@ -60,6 +59,8 @@ export { default as EpisodeChangingLoader } from "./Widgets/episode/EpisodeChang
 
 
 export { default as CompactAnimeCard } from "./Widgets/Cards/CompactAnimeCard.svelte"
+export { default as RecentAnimeCard } from "./Widgets/Cards/RecentAnimeCard.svelte"
+export { default as RecentAnimeSkeleton } from "./Widgets/Cards/RecentAnimeSkeleton.svelte"
 
 
 export { default as RailEffect } from "./Widgets/navigtation/RailEffect.svelte"
