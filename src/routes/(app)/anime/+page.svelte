@@ -3,7 +3,7 @@
 	import { page } from '$app/stores';
 	import { gogo, animlist } from '$lib';
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
 
 	let id: string | null;
 	$: anime = {};
@@ -320,7 +320,7 @@
 		</section>
 	</section>
 {:else}
-	<section class="h-screen">
+	<section out:fade={{ delay: 100, duration: 400 }} class="h-screen">
 		<section class="relative z-0 h-full snap-start flex flex-col justify-between">
 			<section class=" z-30 flex flex-row justify-between pt-12 mx-[2.5%]">
 				<section class="flex flex-col gap-y-14 items-center w-1/4">

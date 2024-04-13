@@ -3,7 +3,6 @@
 	import { gogo, Loader, RecentAnimeCard, RecentAnimeSkeleton } from '$lib';
 	import { inview } from 'svelte-inview';
 	import { onMount } from 'svelte';
-	import { fly } from 'svelte/transition';
 
 	async function fetchAnimes(page: number = 1) {
 		const data = await gogo.fetchRecentEpisodes(page);
