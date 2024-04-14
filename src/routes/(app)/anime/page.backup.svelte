@@ -7,13 +7,13 @@
 	import { fade, fly } from 'svelte/transition';
 
 	let id: string | null;
-	let anime: any = {};
+	$: anime = {};
 	// @ts-ignore
 	$: genres = anime?.genres || [];
 	// @ts-ignore
 	$: episodes = anime?.episodes || [];
 
-	let anime_meta: any = {};
+	$: anime_meta = {};
 	$: kitsuInfo = {};
 
 	$: ready = false;
@@ -35,7 +35,17 @@
 				ready = true;
 			}, 800);
 		});
+
+		// @ts-ignore
+		getKitsuInfo(id).then((val) => {
+			kitsuInfo = val;
+		});
 	});
+
+	async function extractResult(gogoId: string) {
+		const result1 = (await animlist.search(gogoId))?.results[0];
+		return result1;
+	}
 
 	async function getKitsuInfo(animeId: string) {
 		const info = await axios.get(`https://kitsu.io/api/edge/anime?filter[text]=${animeId}`);
@@ -47,7 +57,7 @@
 		// @ts-ignore
 		return {
 			anime: await gogo.fetchAnimeInfo(id),
-			meta: await getKitsuInfo(id)
+			meta: await extractResult(id)
 		};
 	}
 
@@ -58,6 +68,10 @@
 				anime_meta = data.meta;
 				ready = true;
 			}, 800);
+		});
+		// @ts-ignore
+		getKitsuInfo(id).then((val) => {
+			kitsuInfo = val;
 		});
 	}
 </script>
@@ -70,30 +84,35 @@
 				class="absolute bg-center opacity-70 bg-cover bg-no-repeat h-[90vh] w-full"
 				style="mask-image: radial-gradient(at top right, rgba(0,0,0,1.0) ,transparent 40%),
 				radial-gradient(at top right, rgba(0,0,0,1.0),transparent 70%);
-				background-image: url({anime_meta?.attributes?.coverImage?.original});
+				background-image: url({anime_meta?.cover});
 			"
 			/>
 
 			<section class=" z-30 flex flex-row justify-between pt-12 mx-[2.5%]">
 				<section class="flex flex-col gap-y-14 items-center w-1/4">
-					<img
-						class="shadow-xl h-96 w-64 rounded-2xl"
-						src={anime.image}
-						alt="anime manga japan {anime.title}"
-					/>
+					{#if anime_meta?.image}
+						<img
+							class="shadow-xl h-96 w-64 rounded-2xl"
+							src={anime_meta?.image}
+							alt="anime manga japan {anime?.title}"
+						/>
+					{:else}
+						<img
+							class="shadow-xl h-96 w-64 rounded-2xl"
+							src={anime.image}
+							alt="anime manga japan {anime.title}"
+						/>
+					{/if}
 
 					<div class="flex gap-y-4 font-semibold w-64 items-start flex-col">
-						{#if anime_meta?.attributes?.averageRating}
+						{#if anime_meta?.rating}
 							<span>
-								Rating: <span class="ml-1 text-warning-400">
-									{anime_meta?.attributes?.averageRating}
-								</span>
+								Rating: <span class="ml-1 text-warning-400"> {anime_meta?.rating} </span>
 							</span>
 						{:else}
 							<span> Score: <span class="ml-1 text-warning-400"> 86 </span> </span>
 						{/if}
 
-						<!-- Todo Later -->
 						{#if anime_meta?.popularity}
 							<span>
 								Popularity: <span class="ml-1 text-warning-400"> {anime_meta?.popularity} </span>
@@ -102,19 +121,8 @@
 							<span> Status: <span class="ml-1 text-warning-400">Watching</span> </span>
 						{/if}
 
-						{#if anime_meta?.attributes?.nsfw != undefined}
-							{@const nfsw = anime_meta?.attributes?.nsfw}
-							<span> NSFW : <span class="ml-1 text-warning-400">{nfsw}</span> </span>
-						{:else}
-							<span> Episodes: <span class="ml-1 text-warning-400">?/1100</span> </span>
-						{/if}
-
-						{#if anime_meta?.attributes?.ageRating}
-							{@const ac = anime_meta?.attributes?.ageRating}
-							<span> Age Rating : <span class="ml-1 text-warning-400">{ac}</span> </span>
-						{:else}
-							<span> Age Rating: <span class="ml-1 text-warning-400">PG</span> </span>
-						{/if}
+						<span> Episode: <span class="ml-1 text-warning-400">797/?</span> </span>
+						<span> Your Score: <span class="ml-1 text-warning-400">Not rated</span> </span>
 					</div>
 				</section>
 
@@ -122,19 +130,20 @@
 					<h1 class="h1 font-bold leading-[60px]">
 						{anime?.title}
 					</h1>
-
-					{#if anime_meta?.attributes?.titles}
-						{@const titles = anime_meta?.attributes?.titles}
+					{#if anime_meta?.title}
 						<div
 							class="flex flex-row gap-2 items-center mt-2 font-semibold text-[#A5A5A5] opacity-95 text-lg"
 						>
-							<div>{titles?.en}</div>
+							<div>{anime_meta?.title?.romaji}</div>
 							<div class="w-[5px] h-[5px] bg-[#A5A5A5]" />
 
-							<div>{titles?.en_jp}</div>
+							<div>{anime_meta?.title?.english}</div>
 							<div class="w-[5px] h-[5px] bg-[#A5A5A5]" />
 
-							<div>{titles?.ja_jp}</div>
+							<div>{anime_meta?.title?.native}</div>
+							<div class="w-[5px] h-[5px] bg-[#A5A5A5]" />
+
+							<div>{anime_meta?.title?.userPreferred}</div>
 						</div>
 					{/if}
 					<div class="flex flex-row gap-4 mt-8">
@@ -148,48 +157,22 @@
 					</div>
 
 					<div class="font-semibold leading-[18px] items-center flex flex-row gap-2 mt-5">
-						{#if anime_meta}
-							{@const atrr = anime_meta?.attributes}
-							<span>
-								{atrr?.showType}
-							</span>
-							<div class="w-[5px] h-[5px] bg-white" />
-							<span>
-								{anime?.totalEpisodes}+ eps
-							</span>
-							<div class="w-[5px] h-[5px] bg-white" />
+						<span>
+							{anime?.type}
+						</span>
+						<div class="w-[5px] h-[5px] bg-white" />
+						<span>
+							{anime?.totalEpisodes}+ eps
+						</span>
+						<div class="w-[5px] h-[5px] bg-white" />
 
-							<span>
-								{atrr?.status}
-							</span>
-							<div class="w-[5px] h-[5px] bg-white" />
-
-							<span>
-								{anime?.type}
-							</span>
-							<div class="w-[5px] h-[5px] bg-white" />
-
-							<span>
-								{anime?.releaseDate}
-							</span>
-						{:else}
-							<span>
-								{anime?.type}
-							</span>
-							<div class="w-[5px] h-[5px] bg-white" />
-							<span>
-								{anime?.totalEpisodes}+ eps
-							</span>
-							<div class="w-[5px] h-[5px] bg-white" />
-
-							<span>
-								{anime?.status}
-							</span>
-							<div class="w-[5px] h-[5px] bg-white" />
-							<span>
-								{anime?.releaseDate}
-							</span>
-						{/if}
+						<span>
+							{anime?.status}
+						</span>
+						<div class="w-[5px] h-[5px] bg-white" />
+						<span>
+							{anime?.releaseDate}
+						</span>
 					</div>
 
 					<div class="mt-8 text-lg font-medium leading-6 text-[#C4C4C4]">
@@ -231,86 +214,49 @@
 				</section>
 
 				<section class="flex flex-col items-center gap-10 w-1/4">
-					{#if anime_meta?.attributes?.youtubeVideoId}
-						{@const youtubeId = anime_meta?.attributes?.youtubeVideoId}
-						<a
-							href="https://www.youtube.com/watch?v={youtubeId}"
-							target="_blank"
-							class="btn mt-10 w-56 h-20 leading-6 text-white rounded-xl bg-surface-500 font-bold"
+					<button
+						class="btn mt-10 w-56 h-20 leading-6 text-white rounded-xl bg-surface-500 font-bold"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class=""
+							><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 4v16l13 -8z" /></svg
 						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								class=""
-								><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path
-									d="M7 4v16l13 -8z"
-								/></svg
-							>
-							<span class="opacity-80"> Trailer/PV </span>
-						</a>
-					{:else}
-						<button
-							class="btn mt-10 w-56 h-20 leading-6 text-white rounded-xl bg-surface-500 font-bold"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="24"
-								height="24"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								class=""
-								><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path
-									d="M7 4v16l13 -8z"
-								/></svg
-							>
-							<span class="opacity-80"> Trailer/PV </span>
-						</button>
-					{/if}
+						<span class="opacity-80"> Trailer/PV </span>
+					</button>
 
 					<div
 						class="card p-6 gap-4 variant-filled-surface flex flex-col w-56 rounded-xl font-semibold"
 					>
 						<div class="flex flex-col">
 							<span> Episode Duration </span>
-							<span class="ml-1 text-warning-400">
-								{#if anime_meta?.attributes?.episodeLength}
-									{@const length = anime_meta?.attributes?.episodeLength}
-									{length} min
-								{:else}
-									24 min
-								{/if}
-							</span>
+							<span class="ml-1 text-warning-400"> 24 min </span>
 						</div>
 						<div class="flex flex-col">
 							<span> Release Date </span>
 							<span class="ml-1 text-warning-400">
-								{#if anime_meta?.attributes?.startDate}
-									{@const startDate = anime_meta?.attributes?.startDate}
-									{startDate}
+								{#if anime_meta?.releaseDate}
+									{anime_meta?.releaseDate}
 								{:else}
 									{anime?.releaseDate}
 								{/if}
 							</span>
 						</div>
 						<div class="flex flex-col">
-							<span> End Date : </span>
+							<span> Current Episode Count </span>
 							<span class="ml-1 text-warning-400">
-								{#if anime_meta?.attributes?.endDate}
-									{@const endDate = anime_meta?.attributes?.endDate}
-									{endDate}
+								{#if anime_meta?.currentEpisodeCount}
+									{anime_meta?.currentEpisodeCount}
 								{:else}
-									??
+									?
 								{/if}
 							</span>
 						</div>
@@ -361,12 +307,12 @@
 			</button>
 		</section>
 
-		<!-- <pre class="pre">
-			{JSON.stringify(anime_meta, null, 2)}
-		</pre> -->
+		<pre class="pre">
+			{JSON.stringify(kitsuInfo, null, 2)}
+		</pre>
 
 		<!-- Episodes Stuff -->
-		<section class="h-full snap-start">
+		<!-- <section class="h-full snap-start">
 			<header class="mx-[2.5%] flex flex-row justify-center items-center">
 				<h1 class=" h1 font-bold">EPISODES</h1>
 				<div class="w-full rounded-xl mt-2 mr-24 ml-10 h-3 bg-white" />
@@ -382,7 +328,7 @@
 					</a>
 				{/each}
 			</section>
-		</section>
+		</section> -->
 	</section>
 {:else}
 	<section out:fade={{ delay: 100, duration: 400 }} class="h-screen">
