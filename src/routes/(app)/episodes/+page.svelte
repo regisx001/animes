@@ -106,6 +106,12 @@
 								/>
 							</svg>
 						</button>
+						<a
+							href="{base}/anime?id={anime?.id}"
+							class="btn flex w-full items-center rounded-[0.35vw] bg-surface-400 px-[0.75vw] py-[0.5vw] text-xl font-semibold leading-none"
+						>
+							{anime?.title}
+						</a>
 						<div class="card z-50 w-52 shadow-xl p-4 h-60 overflow-scroll" data-popup="servers">
 							<ListBox rounded="rounded-xl">
 								{#each episode as server}
