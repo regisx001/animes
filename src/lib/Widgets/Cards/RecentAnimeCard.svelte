@@ -4,7 +4,7 @@
 
 <a
 	href="/episodes?id={anime.episodeId}"
-	class="relative col-span-1 flex flex-col gap-2 md:gap-[0.5vw]"
+	class="relative col-span-1 card card-hover flex flex-col gap-2 md:gap-[0.5vw]"
 	><div class="relative" aria-expanded="false">
 		<div class="h-60 w-full rounded-md object-cover object-center md:h-[20vw] md:rounded-[0.35vw]">
 			<img
@@ -46,3 +46,23 @@
 		>
 	</div>
 </a>
+
+<style>
+	.card-hover {
+		transition-property: all;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 190ms;
+	}
+	.card-hover:hover {
+		--tw-scale-x: 104%;
+		--tw-scale-y: 104%;
+		transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
+			skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
+			scaleY(var(--tw-scale-y));
+		--tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+		--tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color),
+			0 8px 10px -6px var(--tw-shadow-color);
+		box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+			var(--tw-shadow);
+	}
+</style>

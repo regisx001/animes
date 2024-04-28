@@ -9,28 +9,32 @@
 		EpisodeOptions,
 		EpisodeChangingLoader
 	} from '$lib';
+
 	import { ListBox, ListBoxItem, popup } from '@skeletonlabs/skeleton';
 	import type { PopupSettings } from '@skeletonlabs/skeleton';
+	import axios from 'axios';
 	import { onMount } from 'svelte';
 
 	let episodeId: string;
 	let animeId: string = '';
 	$: anime = {};
 	$: episode = [];
+	$: episode2 = {};
 	$: isReady = false;
 	$: isEpisodeReady = false;
 
-	$: currentServer = 'Vidstreaming';
-	$: streamingUrl = episode[0]?.url;
+	$: currentServer = 'Nspl';
+	$: streamingUrl = episode2?.nspl?.main || episode2?.nspl?.backup || episode[0]?.url;
 
 	async function fetchResources(episodeId: string, animeId: string) {
 		isReady = false;
-		const [episode, anime] = await Promise.all([
+		const [episode, anime, episode2] = await Promise.all([
 			await gogo.fetchEpisodeServers(episodeId),
-			await gogo.fetchAnimeInfo(animeId)
+			await gogo.fetchAnimeInfo(animeId),
+			(await axios.get(`https://api.amvstr.me/api/v2/stream/${episodeId}`)).data
 		]);
 
-		return { episode, anime };
+		return { episode, anime, episode2 };
 	}
 
 	onMount(async () => {
@@ -41,8 +45,13 @@
 
 		await fetchResources(episodeId, animeId).then((value) => {
 			anime = value.anime;
-			// @ts-ignore
-			episode = value.episode;
+			if (value.episode2.code) {
+				// @ts-ignore
+				episode2 = value.episode2;
+			} else {
+				// @ts-ignore
+				episode = value.episode;
+			}
 		});
 		isReady = true;
 		isEpisodeReady = true;
@@ -70,7 +79,6 @@
 		<div class="col-span-12 flex flex-col md:col-span-8 md:gap-[0.75vw]">
 			<div class="relative h-64 w-full md:z-30 md:h-[35vw]">
 				<div class="h-full aspect-video w-full rounded-none object-cover md:rounded-[0.5vw]">
-					<!-- svelte-ignore a11y-img-redundant-alt -->
 					<iframe
 						sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
 						frameborder="0"
@@ -114,18 +122,58 @@
 						</a>
 						<div class="card z-50 w-52 shadow-xl p-4 h-60 overflow-scroll" data-popup="servers">
 							<ListBox rounded="rounded-xl">
-								{#each episode as server}
+								{#if !episode2?.code}
+									{#each episode as server}
+										<ListBoxItem
+											on:click={() => {
+												streamingUrl = server?.url;
+											}}
+											bind:group={currentServer}
+											name="Server"
+											value={server?.name}
+										>
+											{server?.name}
+										</ListBoxItem>
+									{/each}
+								{:else}
+									{@const plyr = episode2?.plyr}
+									{@const nspl = episode2?.nspl}
+
 									<ListBoxItem
 										on:click={() => {
-											streamingUrl = server?.url;
+											streamingUrl = plyr?.main ? plyr?.main : plyr?.backup;
 										}}
 										bind:group={currentServer}
 										name="Server"
-										value={server?.name}
+										value={'plyr'}
 									>
-										{server?.name}
+										PLyr (No ads)
 									</ListBoxItem>
-								{/each}
+
+									<ListBoxItem
+										on:click={() => {
+											streamingUrl = nspl?.main ? nspl?.main : nspl?.backup;
+										}}
+										bind:group={currentServer}
+										name="Server"
+										value={'nspl'}
+									>
+										NSpl (No ads)
+									</ListBoxItem>
+
+									{#each episode2?.iframe as server}
+										<ListBoxItem
+											on:click={() => {
+												streamingUrl = server?.url;
+											}}
+											bind:group={currentServer}
+											name="Server"
+											value={server?.name}
+										>
+											{server?.name}
+										</ListBoxItem>
+									{/each}
+								{/if}
 							</ListBox>
 							<div class="arrow bg-surface-100-800-token" />
 						</div>
@@ -206,7 +254,7 @@
 {/if}
 
 <!-- <pre class="pre">
-	{JSON.stringify(episode, null, 2)}
+	{JSON.stringify(episode2, null, 2)}
 	{JSON.stringify(streamingUrl, null, 2)}
 </pre> -->
 <!-- <section class="flex flex-col lg:flex-row h-full w-full">

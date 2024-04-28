@@ -18,10 +18,10 @@
 		});
 
 		await fetchAnimes(curr_page).then((val) => {
+			recentEpisodes = val;
 			setTimeout(() => {
-				recentEpisodes = val;
 				is_ready = true;
-			}, 1000);
+			}, 600);
 		});
 	});
 </script>
